@@ -1,8 +1,8 @@
 ﻿.Language=Russian,Russian (Русский)
-.PluginContents=JSON Browser
+.PluginContents=XML Browser
 
 @Contents
-$^#JSON Browser Plugin#
+$^#XML Browser Plugin#
 
    ~Описание~@Description@
 
