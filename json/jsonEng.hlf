@@ -1,0 +1,131 @@
+.Language=English,English
+.PluginContents=JSON Browser
+
+@Contents
+$^#JSON Browser Plug-in#
+
+   ~Description~@Description@
+
+   ~Keyboard commands~@Keyboard@
+ 
+   ~Copy Implementation~@CopyMove@
+
+   ~JSON Pointer support~@Pointers@
+
+@-
+----------------------------------------
+For new versions, check ~http://michael-y.org/FAR~@http://michael-y.org/FAR@
+or ~http://plugring.farmanager.com/plugin.php?pid=956~@http://plugring.farmanager.com/plugin.php?pid=956@.
+ ~yutsis@@gmail.com~@mailto:yutsis@@gmail.com@
+
+
+@Description
+$^#Description#
+
+This plugin displays contents of any JSON file as an archive or directory.
+The "subdirs" are JSON objects and arrays, and the 
+"files" are strings, numbers and booleans.
+
+Item values are displayed in the Description column.
+
+You can view any item by F3 key. If you press F3 on "..", you view the whole
+current object or array with all its contents.
+
+Navigation by ~JSON pointers~@Pointers@ is supported.
+
+You can also open any file from the command line using the #json:# prefix, for example:
+@-
+
+ #json:C:\Users\MyUser\AppData\Local\Google\Chrome\User Data\Default\Local State#
+@+ 
+You can also append a JSON ~pointer~@Pointers@ after the colon character ':'
+to make automatic "directory change" to specific location after opening the file:
+
+@-
+#json:Local State:/plugins/metadata/adobe-reader/versions/4#
+@+ 
+
+@Keyboard
+$^#Keyboard Commands#
+
+#Shift-F7#  Toggle ~"Objects as files" / "Objects as directories"~@modes@ modes.
+
+#Ctrl-F#    Put the path (pointer) of the current item into the command line.
+
+#Alt-Shif-Ins# Take paths (pointers) of selected items into the clipboard.
+
+#Ctrl-G#    Put the value from Descriptions column into the command line.
+
+#Ctrl-Z#    Open current item in edit dialog box. Editing is not supported,
+          but you can view them, take to clipboard etc.
+
+#Alt-Shift-F3# View the group of selected elements in a single viewer.
+
+#Note 1.# Long strings extracted with Ctrl-G or Ctrl-Z are truncated
+to 1024 characters. To export the whole object, use View/Edit commands.
+
+#Note 2.# Alt-Shift-NumPad5 works like Alt-Shift-F3.
+
+@Modes
+$^#Operation modes#
+
+ There are two operation modes of the plugin:
+
+#Objects as directories.# Objects and arrays are color-highlighted if file highlighting is 
+enabled in FAR) and are displayed according to sorting rules, 
+before the other items (unless in Unsorted mode). In the QuickView mode you can see the total size
+of all "plain" items under the current object.
+
+#Objects as files.# Objects and arrays are distinguished from attributes only if file
+size is displayed; the "size" of objects is always 0. You can browse objects and arrays
+in the Quick View panel mode.
+
+If you press Ctrl-PgDn in this mode, the contents of this element
+will be exported in a temporary file, and this new file will be opened by 
+the plugin.
+
+In most cases, "Elements as directories" is recommended, unless you want to
+QuickView them.
+
+To toggle between these modes, press #Shift-F7#.
+
+@Pointers
+$^#JSON Pointers#
+
+The plugin can use JSON pointer syntax to move directly to specific location
+within a JSON document. 
+
+The syntax is pretty intuitive for understanding, it treats objects and arrays as "directories";
+subdirectory names for array elements are their indices (0-based).
+
+Examples of JSON pointers:
+
+@-
+#/foo#		Go to the top-level object named #foo#
+#/foo/2#	Assuming that the root #foo# object is an array, go to its 2nd element (0-based)
+@+
+
+The #cd# command understands JSON pointers.
+
+If object name contains a #/# character, it must be escaped as #~~1#; 
+a tilde character #~~# is escaped as #~~0#.
+
+For more information, read ~RFC 6901~@http://tools.ietf.org/html/rfc6901@.
+
+@CopyMove
+$ #Copy#
+
+#Copy operation#
+Any non-directory name entered in Copy dialog is treated as a file name,
+and the item is exported to this file. If you put '\' in the end of the line, it is
+considered a directory name, and the object is exported there under its own name.
+
+Objects and arrays are always exported as .json files and never as directory
+trees of values, even in the "objects as directories" mode.
+
+@WinError
+$ #Windows Error#
+
+This message is shown by the JSON plugin when any Windows error is encountered.
+
+The message text is provided by Windows.

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<renewal>
+	<plugin guid="{C58ECBF9-8C61-486A-8B5F-C3B3060CAE8E}">
+		<home arch="any">http://michael-y.org/FAR/</home>
+		<url arch="any">http://michael-y.org/FAR/</url>
+		<regex arch="x86">json(\d)(\d\d)W3\.zip</regex>
+		<regex arch="x64">json(\d)(\d\d)W3x64\.zip</regex>
+		<srcpath arch="any">json</srcpath>
+	</plugin>
+</renewal>

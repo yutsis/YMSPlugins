@@ -1,0 +1,20 @@
+LIBRARY
+EXPORTS
+   ClosePluginW
+;   CompareW
+;   ConfigureW
+;   DeleteFilesW
+   FreeFindDataW
+   GetFilesW
+   GetFindDataW
+   GetOpenPluginInfoW
+   GetPluginInfoW
+   MakeDirectoryW
+   OpenPluginW
+   OpenFilePluginW
+   ProcessKeyW
+   ProcessEventW
+;   PutFilesW
+   SetDirectoryW
+   SetStartupInfoW
+   

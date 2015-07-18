@@ -1,0 +1,20 @@
+LIBRARY
+EXPORTS
+   ClosePlugin
+;   Compare
+;   Configure
+;   DeleteFiles = ?DeleteFiles@YMSExport@@CGHPAXPAUPluginPanelItem@@HH@Z
+   FreeFindData = ?FreeFindData@YMSExport@@CGXPAXPAUPluginPanelItem@@H@Z
+   GetFiles = ?GetFiles@YMSExport@@CGHPAXPAUPluginPanelItem@@HHPADH@Z
+   GetFindData = ?GetFindData@YMSExport@@CGHPAXPAPAUPluginPanelItem@@PAHH@Z
+   GetOpenPluginInfo = ?GetOpenPluginInfo@YMSExport@@CGXPAXPAUOpenPluginInfo@@@Z
+   GetPluginInfo
+   MakeDirectory = ?MakeDirectory@YMSExport@@CGHPAXPADH@Z
+   OpenPlugin
+   OpenFilePlugin
+   ProcessEvent = ?ProcessEvent@YMSExport@@CGHPAXH0@Z
+   ProcessKey = ?ProcessKey@YMSExport@@CGHPAXHI@Z
+;   PutFiles = ?PutFiles@YMSExport@@CGHPAXPAUPluginPanelItem@@HHH@Z
+   SetDirectory = ?SetDirectory@YMSExport@@CGHPAXPBDH@Z
+   SetStartupInfo = ?SetStartupInfo@@YGXPAUPluginStartupInfo@@@Z
+   
