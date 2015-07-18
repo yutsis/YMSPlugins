@@ -5,7 +5,7 @@
 
 #include "..\ymsplugin.cpp"
 
-static const TCHAR JSONEXT[] = _T(".json");
+static const TCHAR sJsonExt[] = _T(".json");
 static const TCHAR sObjectsAsDirs[] = _T("ObjectsAsDirs");
 TCHAR sExportUTF[] = _T("ExportUTF");
 BOOL JsonPlugin::bExportUTF;
@@ -40,7 +40,8 @@ InfoPanelLine infoPanelLines[] = {
     { _T("     :) Michael Yutsis, 2015"), _T(""), 0 },
 };
 
-JsonPlugin::JsonPlugin(LPCTSTR lpFileName, LPCBYTE data) : buf(10000), sHostFile(lpFileName), pCurrent(_T(""))
+JsonPlugin::JsonPlugin(LPCTSTR lpFileName, LPCBYTE data) : buf(10000),
+            sHostFile(lpFileName), pExtOnGet(sJsonExt)
 {
     bChanged = false;
     {
@@ -52,10 +53,15 @@ JsonPlugin::JsonPlugin(LPCTSTR lpFileName, LPCBYTE data) : buf(10000), sHostFile
     }
     //buf.resize(buf.capacity());
     f = _tfopen(lpFileName, _T("r"));
+    if(f == NULL)
+        throw WinExcept();
     FileReadStream fs(f, &buf[0], buf.size());
-    doc.ParseStream(AutoUTFInputStream<unsigned, FileReadStream>(fs));
-    curObject = &doc;
-    pExtOnGet = JSONEXT;
+    AutoUTFInputStream<unsigned, FileReadStream> autoStream(fs);
+    doc.ParseStream<0, AutoUTF<unsigned>>(autoStream);
+    bSourceHasBOM = autoStream.HasBOM();
+    sourceUTFType = autoStream.GetType();
+
+    curObject = &doc;    
 }
 JsonPlugin::~JsonPlugin()
 {
@@ -71,8 +77,11 @@ KeyBarItem KeyBarItems[] = {
     VK_F2, SHIFT_PRESSED, MSave,
     VK_F6, SHIFT_PRESSED, MCopy,
     VK_F7, SHIFT_PRESSED, MToggle,
+    VK_F7, 0, -1,
+    VK_F8, 0, -1,
+    VK_F8, SHIFT_PRESSED, -1,
     VK_F3, LEFT_ALT_PRESSED|SHIFT_PRESSED, MViewGr,
-    VK_F4, LEFT_ALT_PRESSED|SHIFT_PRESSED, MViewGr,//MEditGr,
+//    VK_F4, LEFT_ALT_PRESSED|SHIFT_PRESSED, MViewGr,//MEditGr,
 };
 
 //static PanelMode panelModes[10];
@@ -162,29 +171,53 @@ BOOL JsonPlugin::GetFindData(PluginPanelItem*& panelItems, int& itemCount, int O
     panelItems = new PluginPanelItem[itemCount];
     memset(panelItems, 0, itemCount * sizeof PluginPanelItem);
     
-    auto fillItem = [this](PluginPanelItem& item, PCTSTR name, GenericValue<DocType>& value)
+    auto fillItem = [this](PluginPanelItem& item, PCWSTR name, GenericValue<DocType>& value)
     {
         item.Owner = 0;
 #ifdef UNICODE
         item.FileName = _wcsdup(name);
 #else
-        strncpy(item.FindData.cFileName, name, sizeof item.FindData.cFileName);
+        strncpy(item.FindData.cFileName, OEMString(name), sizeof item.FindData.cFileName);
 #endif
-        if(bKeysAsDirs && (value.IsArray() || value.IsObject()))
-            item.FileAttributes = FILE_ATTRIBUTE_DIRECTORY;
+        item.USERDATA = 
+#ifdef FAR3
+                (void*)
+#else
+                (DWORD_PTR)
+#endif
+                        value.GetType();
         DescStringBuffer sbuf(1000);
         PrettyWriter<DescStringBuffer, DocType, UTF16<> > pwriter(sbuf);
         pwriter.SetIndent(' ', 0);
         /*auto o =*/ value.Accept(pwriter);
         item.Description = MakeItemDesc(sbuf.GetString(), 1000);
+        switch(value.GetType())
+        {
+            /*case Type::kStringType:
+                item.FileSize = value.GetStringLength();
+                break;*/
+            case kArrayType:
+            case kObjectType:
+                if(bKeysAsDirs)
+                    item.FileAttributes = FILE_ATTRIBUTE_DIRECTORY;
+                break;
+            default:
+#ifdef UNICODE
+                item.FileSize
+#else
+                item.FindData.nFileSizeLow
+#endif
+                        = _tcslen(item.Description);
+                break;
+        }
     };
 
     if(curObject->IsArray())
     {
         for(int i=0; i < itemCount; i++)
         {
-            TCHAR name[10];
-            _itot(i, name, 10);
+            WCHAR name[10];
+            _itow(i, name, 10);
             fillItem(panelItems[i], name, (*curObject)[i]);
         }
     }
@@ -202,34 +235,15 @@ BOOL JsonPlugin::GetFindData(PluginPanelItem*& panelItems, int& itemCount, int O
     return TRUE;
 }//GetFindData
 
-BOOL JsonPlugin::SetDirectory(PCTSTR dir, int iOpMode)
-{
-    tstring tdir(dir);
-    tstring path;
-    if(!_tcscmp(dir, _T("..")))
-    {
-        path = CurrentDir;
-        TCHAR* pSlash = _tcsrchr(CurrentDir, '/');
-        if(pSlash)
-        {
-            path = path.substr(0, pSlash - CurrentDir);
-        }
-    }
-    else
-    {
-        for(size_t i = 0; i < tdir.size(); i++)
-            if(tdir[i] == '\\')
-                tdir[i] = '/';
 
-        if(tdir[0] != '/') //relative
-        {
-            path = CurrentDir;
-            path += _T("/");
-        }
-        if(_tcscmp(tdir.c_str(), _T("/")))
-            path += tdir;
-    }
-    GenericPointer<GenericValue<DocType>> p(path.c_str());
+void JsonPlugin::OnMakeFileName(PluginPanelItem& item)
+{
+    pExtOnGet = IsFolder(item) ? sJsonExt : _T("");
+}
+
+BOOL JsonPlugin::GoToPath(PCTSTR path)
+{
+    GenericPointer<GenericValue<DocType>> p((PWSTR)WideFromOem(path));
     auto v = p.Get(doc);
     if(!p.IsValid())
         return FALSE;
@@ -238,29 +252,152 @@ BOOL JsonPlugin::SetDirectory(PCTSTR dir, int iOpMode)
         return FALSE;
 
     curObject = v;
-    _tcsncpy(CurrentDir, path.c_str(), _countof(CurrentDir));
+    _tcsncpy(CurrentDir, path, _countof(CurrentDir));
+    CurrentDir[_countof(CurrentDir) - 1] = 0;
     return TRUE;
+}
+
+void EncodeToBuf(PTSTR buf, PCTSTR dir, size_t size)
+{
+    //_tcsncpy(buf, dir, size);
+    TCHAR* p = buf;
+    for(size_t i = 0; i < size; i++)
+    {
+        char c = dir[i];
+        switch(c)
+        {
+            case '/':
+                *p++ = '~'; *p++ = '1';
+                break;
+            case '~':
+                *p++ = '~'; *p++ = '0';
+                break;
+            default:
+                *p++ = c;
+                if(c == 0)
+                    return;
+                break;
+        }
+    }
+}
+
+BOOL JsonPlugin::SetDirectory(PCTSTR dir, int iOpMode)
+{
+    tstring path;
+    if(!_tcscmp(dir, _T(".."))) // go to updir (..)
+    {
+        path = CurrentDir;
+        TCHAR* pSlash = _tcsrchr(CurrentDir, '/');
+        if(pSlash)
+        {
+            path = path.substr(0, pSlash - CurrentDir);
+        }
+        return GoToPath(path.c_str());
+    }
+
+    // First, try the name immediately
+    if(curObject->IsObject())
+    {
+        auto mem = curObject->FindMember((PWSTR)WideFromOem(dir));
+        if(mem != curObject->MemberEnd())
+        {
+            if(!mem->value.IsObject() && !mem->value.IsArray())
+                return FALSE;
+            curObject = &mem->value;
+            _tcsncat(CurrentDir, _T("/"), _countof(CurrentDir));
+            size_t l = _tcslen(CurrentDir);
+            EncodeToBuf(CurrentDir + l, dir, _countof(CurrentDir) - l);
+            CurrentDir[_countof(CurrentDir) - 1] = 0;
+            return TRUE;
+        }
+    }
+    else if(curObject->IsArray()) //try the value immediately
+    {
+        PTSTR end;
+        long index = _tcstol(dir, &end, 10);
+        if(*end == 0)
+        {
+            auto val = &(*curObject)[index];
+            if(!val->IsObject() && !val->IsArray())
+                return FALSE;
+            curObject = val;
+            _tcsncat(CurrentDir, _T("/"), _countof(CurrentDir));
+            _tcsncat(CurrentDir, dir, _countof(CurrentDir));
+            CurrentDir[_countof(CurrentDir) - 1] = 0;
+            return TRUE;
+        }
+    }
+
+    // Then, try without converting backslashes to slashes (there may be a name with backslashes)
+    if(dir[0] != '/') //relative path, add CurrentDir first
+    {
+        path = CurrentDir;
+        path += _T("/");
+    }
+
+    if(_tcscmp(dir, _T("/")))
+        path += dir;
+
+    if(GoToPath(path.c_str()))
+        return TRUE;
+
+    // Convert \ to / and retry
+    path.clear();
+    tstring tdir(dir);
+
+    for(size_t i = 0; i < tdir.size(); i++)
+        if(tdir[i] == '\\')
+            tdir[i] = '/';
+
+    if(tdir[0] != '/') //relative path, add CurrentDir first
+    {
+        path = CurrentDir;
+        path += _T("/");
+    }
+    if(_tcscmp(tdir.c_str(), _T("/")))
+        path += tdir;
+
+    return GoToPath(path.c_str());
 } //SetDirectory
 
 void JsonPlugin::ExportItem(PluginPanelItem& item, PCTSTR filename, bool bAppend)
 {
+    GenericValue<DocType>::MemberIterator obj;
+    if(_tcscmp(item.FileName, _T("..")) && curObject->IsObject())
+    {
+        obj = curObject->FindMember((PCWSTR)WideFromOem(item.FileName));
+        if (obj == curObject->MemberEnd())
+            throw ActionException();
+    }
+
     FILE* f = _tfopen(filename, bAppend ? _T("a") : _T("w"));
+    if(f == NULL)
+        throw WinExcept();
     char buf[1000];
     FileWriteStream fstream(f, buf, sizeof buf);
-    PrettyWriter<FileWriteStream, DocType, DocType> pwriter(fstream);
+    
+    typedef AutoUTFOutputStream<unsigned, FileWriteStream> OutputStream;
+    OutputStream os(fstream, sourceUTFType, /*bSourceHasBOM*/true);
+
     if(bAppend)
         fstream.Put('\n');
-    /*auto o =*/ 
-        (_tcscmp(item.FileName, _T("..")) ?
-             (curObject->IsObject() ? (*curObject)[item.FileName] : (*curObject)[_ttoi(item.FileName)]) :
-             *curObject)
-             .Accept(pwriter);
+    
+    auto value = (_tcscmp(item.FileName, _T("..")) ?
+            (curObject->IsObject() ? &obj->value : &(*curObject)[_ttoi(item.FileName)]) :
+             curObject);
+    if(sourceUTFType == kUTF8)
+        value->Accept(PrettyWriter<OutputStream, DocType, UTF8 <>>(os));
+    else
+        value->Accept(PrettyWriter<OutputStream, DocType, UTF16<>>(os));
     fstream.Flush();
     fclose(f);
 }
 
 BOOL JsonPlugin::ProcessKey(int key, unsigned int controlState)
 {
+    if(key == VK_F4 && controlState==(PKF_SHIFT|PKF_ALT) ) // don't pass AltShiftF4 for editing in this version
+        return FALSE;
+
     return YMSPlugin::ProcessKey(key, controlState);
 }
 int JsonPlugin::ProcessEvent(int event, void *param)
@@ -278,5 +415,6 @@ int JsonPlugin::PutFiles(PluginPanelItem *PanelItem,size_t itemCount,int Move,in
 }
 int JsonPlugin::MakeDirectory(WCONST WTYPE Name, int OpMode)
 {
+    ::SetLastError(ERROR_NOT_SUPPORTED);
     return FALSE;
 }
