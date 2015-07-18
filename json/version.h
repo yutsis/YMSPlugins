@@ -1,5 +1,5 @@
 #define VERSIONMAJOR 1
-#define VERSIONMINOR 00
+#define VERSIONMINOR 10
 
 #define STRINGIZE_(_s) #_s
 #define WSTRINGIZE_(_s) L#_s
