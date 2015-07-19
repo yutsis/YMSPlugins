@@ -238,7 +238,7 @@ BOOL JsonPlugin::GetFindData(PluginPanelItem*& panelItems, int& itemCount, int O
 
 void JsonPlugin::OnMakeFileName(PluginPanelItem& item)
 {
-    pExtOnGet = IsFolder(item) ? sJsonExt : _T("");
+    pExtOnGet = IsFolder(item) || !_tcscmp(item.FileName,_T("..")) ? sJsonExt : _T("");
 }
 
 BOOL JsonPlugin::GoToPath(PCTSTR path)
