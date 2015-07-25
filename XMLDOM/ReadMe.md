@@ -25,5 +25,5 @@ Plugins\XMLDOM), extract all the files there, restart FAR and enjoy :)
 Michael Yutsis  
 Ramat Gan, Israel  
 [yutsis@gmail.com](mailto:yutsis@gmail.com)  
-http://plugring.farmanager.com/plugin.php?pid=536
-http://michael-y.org/FAR
+http://michael-y.org/FAR  
+http://plugring.farmanager.com/plugin.php?pid=536  

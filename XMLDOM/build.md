@@ -15,5 +15,5 @@ Inside Visual Studio, you may build or debug this plugin under any FAR platform 
 ---
 Michael Yutsis  
 [yutsis@gmail.com](mailto:yutsis@gmail.com)  
-http://michael-y.org/FAR
+http://michael-y.org/FAR  
 http://plugring.farmanager.com/plugin.php?pid=536

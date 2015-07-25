@@ -10,9 +10,9 @@
 
 Version 2.50, 25 Jul 2015
 
-[+] Equal names are displayed with indices: item[0], item[1] etc., which fixes selection problems
+[+] Identical names are displayed with indices: item[0], item[1] etc., which fixes selection problems
 [-] Memory leak fixed
-[ ] BSD 3-clause license (just to put things in order)
+[!] BSD 3-clause license (just to put things in order)
 
 
 Version 2.41, 25 Sep 2014
