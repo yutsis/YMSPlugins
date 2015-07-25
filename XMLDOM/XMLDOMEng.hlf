@@ -42,7 +42,7 @@ You can force tag display in the Name column by #Ctrl-N#.
 Attribute values and text inside elements are displayed in the Description 
 column. Tag names are displayed in the Owner column.
 
-If two or more elements have the same tag, then their tag names are indexed:
+If two or more elements have the same tag, their tag names are indexed:
 item[0], item[1] etc.
 
 You can view/edit any node/attribute by F3/F4 key.
