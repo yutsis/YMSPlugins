@@ -402,13 +402,14 @@ BOOL XMLPlugin::GetFindData(PluginPanelItem*& PanelItem, int& itemCount, int OpM
                 NodeType type = node->nodeType;
                 bool bTrueNode = type!=MSXML2::NODE_COMMENT && type!=MSXML2::NODE_TEXT && type!=MSXML2::NODE_CDATA_SECTION && type!=MSXML2::NODE_ATTRIBUTE
                     && type!=MSXML2::NODE_PROCESSING_INSTRUCTION && type!=MSXML2::NODE_NOTATION && type!=MSXML2::NODE_DOCUMENT_TYPE;
+                bool bIndexedNode = bTrueNode || type==MSXML2::NODE_COMMENT;
 
                 _bstr_t name = node->nodeName;
                 wstring wsname(name.GetBSTR());
                 auto res = nameMap.find(wsname);
                 if(res == nameMap.end())
                 {
-                    nameMap[wsname] = pair<int, PluginPanelItem*>(bTrueNode ? 1 : 0, bTrueNode ? &item : NULL);
+                    nameMap[wsname] = pair<int, PluginPanelItem*>(bIndexedNode ? 1 : 0, bIndexedNode ? &item : NULL);
                 }
                 else
                 {
@@ -436,7 +437,7 @@ BOOL XMLPlugin::GetFindData(PluginPanelItem*& PanelItem, int& itemCount, int OpM
 
                     wchar_t buf[16];
                     _snwprintf(buf, _countof(buf), L"[%d]", count);
-                    if(bTrueNode)
+                    if(bIndexedNode)
                         res->second.first++;
                     wsname += buf;
                 }
