@@ -1,0 +1,178 @@
+
+            What's new in XML Browser Plugin for FAR
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+[+] New
+[-] Bugfixes
+[*] Changes
+[!] Attention
+
+
+Version 2.50, 25 Jul 2015
+
+[+] Identical names are displayed with indices: item[0], item[1] etc., which fixes selection problems
+[-] Memory leak fixed
+[!] BSD 3-clause license (just to put things in order)
+
+
+Version 2.41, 25 Sep 2014
+
+[+] Can read Unicode files without BOM signature.
+[-] In Config dialog, when opened from non-XML-panels, Override Columns button is not displayed (it needs the context).
+
+
+Version 2.40, 16 Aug 2014
+
+[*] Special Definitions dialog renamed to Column Overrides.
+[+] Date/time in UNIX time_t format is accepted in attribute values for column overrides.
+[+] (FAR 3 only.) Column Overrides dialog can be called from Options dialog (in XML panels only)
+[-] Options dialog didn't open in the last FAR 3 versions
+[-] ANSI version: text nodes were not edited by F4 for the last 10 years, but who cares...
+
+
+Version 2.30, 26 Dec 2012
+
+[+] Scalar XPath expression can be evaluated on Ctrl-J; its result is displayed in the message box.
+[-] Scalar XPath expressions for columns didn't work with namespaces (such as "substring(@android:name, 20)").
+[-] FAR3: Ctrl-Shift-F3 on "directories" didn't work properly. (Not that it would be useful when fixed.)
+[-] Could not open XML files from Plugins menu (crash or nothing).
+
+
+Version 2.24, 20 Dec 2012  (FAR 3 only)
+
+[-] Yet another cursor position bug fix (again, API change related).
+
+
+Version 2.23, 19 Dec 2012  (FAR 3 only)
+
+[-] When the plugin is open, "far /export" resulted in error 'database is opened in memory'.
+[-] When going up to the parent dir, the cursor was not positioned properly (because of FAR API change).
+
+
+Version 2.21/2.22, 5 Dec 2012
+
+[*] FAR 3 API changes
+[-] On file open error, "canceled by the user" message was displayed.
+
+Version 2.20, 8 Jun 2012
+
+[+] In Unsorted mode, Alt-Shift-Up/Down move the element up/down physically.
+[+] Ctrl-Shift-F5 duplicates selected element(s).
+[+] Namespace prefixes can be used in XPath expressions.
+[*] The plugin starts in Unsorted mode (configurable).
+[*] msxml4 and msxml6 are no more used because they don't allow simple XPath selection
+	when default namespace is defined. Only msxml3.dll is used.
+[-] Fixed sorting names with slashes.
+[-] XPath column overrides were not saved if only Owner was redefined for the element.
+
+
+Version 2.10, 16 May 2012
+
+[+] Versions for Far 3.0 (32- and 64-bit), now 5 versions are built in total
+[!] NOTE: the plugin for Far 3.0 can read XPath column definitions from registry stored 
+    by older versions, but it saves them only in Far3 database.
+[*] When invoked from the command line, the XML path is separated from the filename
+    with ':' instead of '|', so the syntax looks exactly like in history items.
+[+] "Scalar" XPath expressions and functions are possible in user-defined XPath columns.
+[+] msxml6.dll is used if present.
+[+] New-style package with subdirectory and Renewal.xml for Renewal plugin (FAR3)
+[-] Multi-line error messages (e.g. parse errors) were not displayed properly.
+[-] In 64-bit FAR, access violation could occur on pressing Ctrl-J or Alt-Shift-F11
+[-] In 64-bit FAR, F4 couldn't edit elements.
+[-] Editing problems in unicode-only FAR installations where files could not be found
+    because of relative path names.
+[-] The plugin allowed editing by Alt-Shift-F4 but could not import multiple elements,
+    so now it works like Alt-Shift-F3 (as it should by help).
+
+
+Version 2.00, 20 Aug 2009
+
+[+] Unicode and x64 versions.
+[+] Experimental: user-defined XPath rules for column contents.
+    See the help for details.
+[-] Byte-order mark is added at the beginning when exporting in UTF-8 format
+     if international characters are present.
+[-] Int'l characters in file name were corrupted when XML file is saved
+
+
+Version 1.35, 18 Aug 2004
+
+[+] Shift-Enter opens the element in the default browser or other XML program.
+[+] The file can be edited on parsing errors while opening.
+[-] International characters in file names were not treated correctly.
+
+
+Version 1.31, 17 Nov 2003
+
+[-] MSVCP60.DLL is no more required for the plugin.
+
+Version 1.30, 14 Nov 2003
+
+[+] MSXML 4.0 (implemented by msxml4.dll) is used if found.
+    (To force using old msxml3.dll, create DWORD value ForceMSXML3
+    under HKEY_CURRENT_USER\Software\Far\Plugins\YMS\XMLDOM
+    and set it to 1.)
+[+] Shift-F3 views element/schema definitions (if present).
+[+] Alt-Shift-Ins works as it should.
+[-] XPath selection didn't work on prefixed tags.
+[+] Root element's attributes are displayed in the Info panel.
+[+] Documents can be validated on load if the Validate option is enabled.
+[+] "Resolve Externals" option is added. See the help for details.
+[*] By default, "Resolve Externals" is OFF (was ON).
+[-] After saving changes on exit, the plugin didn't exit actually.
+
+
+Version 1.21, 23 Oct 2003
+
+[+] XPath selection implemented. See the help for details.
+[+] Ctrl-F puts XPath of the current item into the command line.
+    XPath format is also used to display the current path in the command 
+    prompt and in commands like Ctrl-].
+[+] Ctrl-N toggles data displayed in the Name column: tags or ID attributes.
+[+] Ctrl-H toggles description display for big elements (>500 items).
+    Disabling it will significantly reduce rescanning time.
+[+] "Add to Plugins Menu" option added. When enabled, the plugin displays
+    "XML browser" item in the plugin menu (F11). When it is selected,
+    the current file under cursor is opened.
+[+] The version of MSXML3.DLL is displayed in the Info panel.
+[+] Alt-Shift-F3 and Alt-Shift-F4 view selected nodes. (Saving not 
+    implemented.)
+[-] Fixed the problem of cursor bar positioning when going up to the parent
+    element if there are duplicated names in it.
+
+
+Version 1.1, 19 Sep 2003
+
+[*] Browsing begins from the document, not from the top level element.
+[*] Text, comments and CDATA are exported as raw data (not XML),
+    and always in Windows code page. 
+[+] Elements, text, comments and CDATA can be edited by F4.
+[+] F7 creates an element. (Pretty useless with no Shift-F4 import.)
+[+] Name Column Attributes option added to Configuration menu.
+[*] Attributes come first in unsorted mode, because they come first 
+    in the XML file.
+[*] XML header is added only if international characters were found in 
+    the exported XML.
+[+] Panel mode is saved.
+[-] Too long file names are truncated now during export.
+[-] XML parser international error messages were displayed incorrectly.
+[-] F4 on ".." can edit the current element.
+
+
+Version 1.0, 4 May 2003
+
+[+] Elements can be exported either in UTF-8 or in Windows format.
+    A header is added if necessary.
+{+] File saving implemented (Shift-F2) to use for editing.
+[+] Attributes, text elements and comments can be edited with Ctrl-Z.
+[+] Elements and attributes can be deleted.
+[+] Configuration dialog added.
+[+] Added "Don't open files" option. It is useful for searching in archives.
+[-] International tags and names were displayed in a wrong code page.
+[-] Pressing Cancel during long operations caused an exception.
+[-] Skip and Skip All buttons in the overwrite dialog didn't work 
+    correctly.
+
+------------------------
+http://michael-y.org/FAR
+yutsis@gmail.com

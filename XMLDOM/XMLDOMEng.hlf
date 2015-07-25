@@ -1,0 +1,397 @@
+.Language=English,English
+.PluginContents=XML Browser
+
+@Contents
+$^#XML Browser Plug-in#
+
+   ~Description~@Description@
+
+   ~Keyboard commands~@Keyboard@
+
+   ~XPath selection/evaluation~@XPath@
+
+   ~Editing~@Editing@
+   
+   ~Overriding column text with XPath~@Special@
+
+   ~Configuration~@Config@
+
+   ~Known problems and troubleshooting~@Problems@
+
+@-
+----------------------------------------
+For the new versions, check ~http://michael-y.org/FAR~@http://michael-y.org/FAR@.
+ yutsis@@gmail.com
+
+@Description
+$^#Description#
+
+This plugin displays contents of any XML file (local or in the Internet)
+as an archive or directory.
+The "subdirs" are XML elements (tags) inside the current element, and the 
+"files" are attributes of the current element, text contents, comments
+and CDATA sections.
+
+The plugin uses Microsoft XML DOM services provided by #msxml3.dll#.
+
+Elements are displayed by their "Name" attribute, or by "Id", or, if neither 
+was found, by their tag names. (You can add more naming attributes.)
+Root element is always displayed by tag name.
+You can force tag display in the Name column by #Ctrl-N#.
+
+Attribute values and text inside elements are displayed in the Description 
+column. Tag names are displayed in the Owner column.
+
+If two or more elements have the same tag, their tag names are indexed:
+item[0], item[1] etc.
+
+You can view/edit any node/attribute by F3/F4 key.
+If you press F3 or F4 on "..", you view the whole current element with all 
+its contents.
+"Sub-elements" (tagged sections inside elements) are extracted in XML format, 
+but without any header. This may be changed in future.
+
+~XPath~@XPath@ selection and evaluation is supported.
+
+You can also open any file or Internet resource from the command line
+using the #xml:# prefix, for example:
+@-
+
+ #xml:C:\WINDOWS\ServicePackFiles\i386\filelist.xml#
+or
+ #xml:http://www.livejournal.com/users/news/rss#
+
+You can also append an ~XPath~@XPath@ suffix after the colon character ':'
+to make automatic selection while opening the file:
+
+#xml:System.xml:/doc/members/member[@@name="T:Microsoft.Win32.SystemEvents"]#
+#xml:http://www.livejournal.com/users/news/rss://item/description|//item/pubDate#
+
+If the result of selection contains only one member, the plugin enters
+inside it, as if it were "change directory" command.
+
+@Problems
+$^#Known Problems and Troubleshooting#
+
+The message #Class not registered# possibly means that msxml3.dll is not present,
+or it is registered.
+Make sure it is present in your System32 directory and register it:
+#regsvr32 msxml3.dll#.
+
+Windows XP and above and Internet Explorer 5.0 and above include msxml3.dll.
+
+@Keyboard
+$^#Keyboard Commands#
+
+#Shift-F7#  Toggle ~"Elements as files" / "Elements as directories"~@modes@ modes.
+
+#Ctrl-F#    Put XPath of the current item into the command line.
+
+#Alt-Shif-Ins# Take XPaths of current items into the clipboard.
+
+#Ctrl-G#    Put the value from Descriptions column into the
+          command line.
+
+#Ctrl-Z#    Open description in edit dialog box. Only attributes, text
+          and comments can be edited currently.
+
+#Ctrl-N#    Toggle names displayed in the Name column (tags/attributes)
+
+#Ctrl-H#    Hide/show descriptions for nodes. This may speed up
+          scanning, since the plugin doesn't need
+          to look up each item's text. When there are not so many nodes
+          (less than 500), their descriptions are always shown.
+
+#Alt-Shift-F3# View the group of selected elements in a single viewer.
+
+#Alt-Shift-F4# View the group of selected elements in a single editor.
+             (Editing is not supported.)
+
+#Alt-Shift-F11# ~Column Overrides~@Special@
+
+#Shift-F3#  View ~definition~@ViewDef@ of the current element or
+          namespace schema (if present).
+          This command works only when Resolve Externals option is ON.
+          
+#Shift-F2#  Save changes
+
+#Shift-Enter#  Open node in the default browser or other
+             system-defined XML program.
+             
+#Alt-Shift-Up/Down# In Unsorted mode only: move element up or down.
+                 (Not for attributes.)
+
+#Ctrl-Shift-F5# Duplicate selected element(s).
+
+#Note 1.# Descriptions extracted by Ctrl-G and Ctrl-Z keys are truncated
+to 256 characters. To export the whole section, use View/Edit commands.
+
+#Note 2.# Alt-Shift-NumPad5 works like Alt-Shift-F3.
+
+@Modes
+$^#Operation modes#
+
+ There are two operation modes of the plugin:
+
+#Elements as directories.# Elements are color-highlighted if file highlighting is 
+enabled in FAR) and are displayed according to sorting rules, 
+before the attributes (unless in Unsorted mode). In the QuickView mode you can see the total size
+of all attributes under the current element.
+
+#Elements as files.# Elements are distinguished from attributes only if file
+size is displayed; the "size" of tags is always 0. You can browse elements
+in the Quick View panel mode.
+
+If you press Ctrl-PgDn in this mode, the contents of this element
+will be exported in a temporary file, and this new file will be opened by 
+the plugin.
+
+In most cases, "Elements as directories" is recommended, unless you want to
+QuickView them.
+
+To toggle between these modes, press #Shift-F7#.
+
+@ViewDef
+$^View Definition
+
+This command views definitions.
+
+It displays:
+
+if DTD is present - the document's DTD;
+
+if XDR schema is present - the node's type definition.
+
+This behaviour may change in future.
+
+This command works only when Resolve Externals option is ON.
+
+@Config
+$^#Configuration#
+@-
+#Export XMLs in#
+( ) UTF-8 code page
+( ) Windows code page
+
+@+
+XML elements with international characters can be exported either in UTF-8 
+format (this is the default for XML), or in your Windows code page.
+
+#UTF-8# if more universal and preferrable, any characters can be mapped to 
+it and no information is lost, but in FAR 1.xx viewer and editor can't
+handle it directly. Notepad understands it well and can be used to watch
+UTF-8 files when defined as alternative editor (Alt-F4).
+
+In #Windows code page# it is possible to export only a limited set of 
+characters. An XML header indicating the code page is added to file in 
+this mode.
+
+#Add to Plugins Menu#
+
+When enabled, the plugin displays "XML browser" item in the plugin menu (F11).
+When it is selected, the current file under cursor is opened.
+By default, this excessive feature is disabled to decrease messing up the 
+F11 menu.
+
+#Open XML files from FAR panel#
+
+Normally it is checked. When unchecked, it disables direct file opening by 
+the plugin when you press Enter or Ctrl-PgDn, or when you search by Alt-F7 with "Search in archives" 
+option enabled. You may want to uncheck this option in the latter case if 
+you don't want FAR to treat XMLs as archives during the search.
+
+Even when this option is unchecked, you can still open XML files from the 
+command line using the #xml:# prefix.
+
+#Validate XMLs on parse#
+
+Indicates whether the document should be validated against DTDs and schema
+on loading.
+
+If disabled, XML is checked on "well-formedness" only.
+
+#Resolve Externals#
+
+Indicates whether external definitions, resolvable namespaces, document 
+type definition (DTD) external subsets, and external entity references, 
+are to be resolved at parse time, independent of validation.
+
+To use the View Definition command (Shift-F3), this option must be ON.
+
+#Start in Unsorted mode#
+
+If checked (default), the plugin starts in unsorted mode when opening XML files
+according to the physical order of elements in the XML file.
+
+If unchecked, it starts in the mode that was on the panel before.
+
+#Name Column Attributes#
+
+List here the attributes you want to be displayed in the Name column.
+Separate them by commas, semicolons or spaces. The names are case-sensitive.
+
+
+@Editing
+$^#Editing#
+
+You may do the following editing operations on the XML file contents at 
+present:
+@-
+- change attributes and text elements via Ctrl-Z dialog box;
+
+- edit attributes and elements by the F4 editor;
+
+- delete elements and attributes.
+@+
+You will see the changes on panel immediately, but the results will not be 
+saved until you press #Shift-F2#.
+
+When the contents was changed, asterisks are added to the panel title.
+
+When you save results, the old file is remained to .bak file. The old .bak 
+file is deleted.
+
+@XPath
+$^#XPath Selection#
+
+You can use XPath query language to select a subset of nodes or to "change
+directory" to any specific node.
+
+To select nodes, press #Ctrl-J# and enter XPath expression. You will see 
+the result of this selection on the panel. If you go down into one of the 
+resulting nodes and exit back, you'll still see this selection. If the 
+selection is on the panel and you go "up" to "..", you return to the node 
+this selection was made from, and the selection is cancelled.
+Another way to cancel the selection is to apply an empty XPath expression.
+
+When you open a file or Internet resource from the command line, you can
+also append an XPath after a pipe character '|' to make automatic 
+selection while opening the file.
+
+You can also evaluate XPath expressions returning a "scalar" value.
+This value will be displayed in a message box.
+
+Read more about XPath and its syntax:
+ ~http://www.w3schools.com/xpath/~@http://www.w3schools.com/xpath/@
+ ~http://www.w3.org/TR/xpath20/~@http://www.w3.org/TR/xpath20/@
+ ~http://msdn.microsoft.com/library/en-us/xmlsdk/htm/xpath_ref_overview_0pph.asp~@http://msdn.microsoft.com/library/en-us/xmlsdk/htm/xpath_ref_overview_0pph.asp@
+
+Examples of XPath requests:
+
+@-
+#elem#		Select all <elem> nodes under the current node.
+#*/summary#	Select all <summary> subnodes of all nodes under the 
+current node.
+#/book/chapter[3]/para[1]#  Select the first para of the third chapter of the book
+#//@@name#	Select all "name" attributes of the file
+#//text()#  	Select all text elements of the file
+
+@+
+The #cd# command understands XPath requests too. When an XPath expression 
+is entered in the #cd# command and its result is one single element, the 
+plugin enters inside this element.
+
+Note: some characters like quotes may not be processed correctly in the 
+FAR command line. In this case, Ctrl-J selection works well.
+
+@Special
+$^#Column Overrides#
+
+For any given XML element of any specific document type, you can define relative XPath expressions for the text
+to be displayed in #Name#, #Date/Time#, #Decription# and #Owner# columns.
+
+To do it, press Alt-Shift-F11 when the cursor is located on the element for which you want to define them.
+
+The following fields can be filled in the dialog:
+
+#Root document tag# (mandatory) - the root tag of the current document.
+   Auto-filled from the current document, but you may type something else
+   if you want to create definition for another document type.
+
+#Item tag# (mandatory) - the tag of the element you want to define.
+   Auto-filled from the element under the cursor (if any), but you may type 
+   something else.
+
+#Name column XPath# (optional) - relative XPath expression to calculate 
+values displayed in the Name column.
+
+For example, in the simplest case, if you want to display the text of the tag 
+<Name> under the current element, the string should be simply #Name#; if you want to display the value of "desc" attribute,
+the string is #@@desc#, etc.
+
+#Date/time XPath# (optional) - relative XPath expression to calculate 
+values displayed in the Date and Time columns. Date and time are parsed 
+from the resulting text and may be either in RFC 822 format (like in RSS 
+documents), or in RFC 3339 (like in Atom), or a number in UNIX #time_t# format (e.g. "1357319086"),
+or time_t-based value with milliseconds (e.g. "1357319086760").
+
+#Description column XPath# (optional) - relative XPath expression to calculate 
+values displayed in the Description column.
+
+#Owner column XPath# (optional) - relative XPath expression to calculate 
+values displayed in the Owner column.
+
+For each of these parameters (if non-empty), XPath selection is executed, 
+and the resulting text is displayed in the respective column. In this way 
+you can display any attributes and any text contents between the tags
+under displayed elements in these four columns.
+
+If none of the four strings are defined, the definition for this element is deleted.
+
+In FAR 1 and 2, all the definitions are stored in the registry under the key
+Plugins\YMS\XMLDOM\Special; the structure is pretty understandable if you need it.
+
+#Note 1.# This definition has a higher priority than name column attributes defined in 
+~Configuration~@Config@.
+
+#Note 2.# Like for the name column attribute list (see ~Configuration~@Config@), you can toggle display with Ctrl-N.
+
+#Note 3.# You can also use "scalar" XPath expressions returning single values rather than XML elements,
+e.g. functions like concat, etc.
+
+
+#Example.#
+
+Consider the RSS web feed format (from ~http://en.wikipedia.org/wiki/RSS~@http://en.wikipedia.org/wiki/RSS@):
+
+ <?xml version="1.0"?>
+ <#rss# version="2.0">
+  <channel>
+    .............
+    <#item#>
+      <#title#>Star City</title>
+      <link>http://liftoff.msfc.nasa.gov/news/2003/news-starcity.asp</link>
+      <#description#>How do Americans get ready to work with Russians aboard the
+        International Space Station? They take a crash course in culture, language
+        and protocol at Russia's Star City.</description>
+      <#pubDate#>Tue, 03 Jun 2003 09:39:21 GMT</pubDate>
+      <guid>http://liftoff.msfc.nasa.gov/2003/06/03.html##item573</guid>
+    </item>
+    <#item#>
+      <#title#>Space Exploration</title>
+      <link>http://liftoff.msfc.nasa.gov/</link>
+      <#description#>Sky watchers in Europe, Asia, and parts of Alaska and Canada
+        will experience a partial eclipse of the Sun on Saturday, May 31.</description>
+      <#pubDate#>Fri, 30 May 2003 11:06:42 GMT</pubDate>
+      <guid>http://liftoff.msfc.nasa.gov/2003/05/30.html##item572</guid>
+    </item>
+    ..............
+  </channel>
+ </rss>
+
+To display emphasized elements in columns for each item, create the 
+following definition. (If you place the cursor on "item" and press #Alt-Shift-F11#, the top 2 lines 
+will be filled automatically.)
+
+ Root document tag: ~rss~
+ Item tag: ~item~
+ Name column XPath: ~title~
+ Date/time XPath: ~pubDate~
+ Description column XPath: ~description~
+
+@WinError
+$ #Windows Error#
+
+This message is shown by the plugin when any Windows error is encountered.
+
+The message text is provided by Windows.

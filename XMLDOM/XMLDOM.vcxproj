@@ -51,8 +51,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{9B97AEDF-FD33-4710-B822-341AE0A68543}</ProjectGuid>
-    <RootNamespace>json</RootNamespace>
+    <ProjectGuid>{7FC04E47-279A-4C5F-8681-5249B74B588D}</ProjectGuid>
+    <RootNamespace>XMLDOM</RootNamespace>
     <Keyword>Win32Proj</Keyword>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -148,34 +148,34 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
     <_ProjectFileVersion>10.0.40219.1</_ProjectFileVersion>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug Far1|Win32'">$(FAR1)\Plugins\json\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug Far1|Win32'">$(FAR1)\Plugins\XMLDOM\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug Far1|Win32'">$(Platform) $(Configuration)\</IntDir>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug Far1|x64'">$(Platform)\$(Configuration)\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug Far1|x64'">$(Platform) $(Configuration)\</IntDir>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release Far1|Win32'">$(FAR1)\Plugins\json\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release Far1|Win32'">$(FAR1)\Plugins\XMLDOM\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release Far1|Win32'">$(Platform) $(Configuration)\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release Far1|Win32'">false</LinkIncremental>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release Far1|x64'">$(Platform)\$(Configuration)\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release Far1|x64'">$(Platform) $(Configuration)\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release Far1|x64'">false</LinkIncremental>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug Far2|Win32'">$(FAR2)\Plugins\json\</OutDir>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug Far3|Win32'">$(FAR3)\Plugins\json\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug Far2|Win32'">$(FAR2)\Plugins\XMLDOM\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug Far3|Win32'">$(FAR3)\Plugins\XMLDOM\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug Far2|Win32'">$(Platform) $(Configuration)\</IntDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug Far3|Win32'">$(Platform) $(Configuration)\</IntDir>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug Far2|x64'">$(FAR264)\Plugins\json\</OutDir>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug Far3|x64'">$(FAR364)\Plugins\json\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug Far2|x64'">$(FAR264)\Plugins\XMLDOM\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug Far3|x64'">$(FAR364)\Plugins\XMLDOM\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug Far2|x64'">$(Platform) $(Configuration)\</IntDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug Far3|x64'">$(Platform) $(Configuration)\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug Far2|x64'">true</LinkIncremental>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug Far3|x64'">true</LinkIncremental>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release Far2|Win32'">$(FAR2)\Plugins\json\</OutDir>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release Far3|Win32'">$(FAR3)\Plugins\json\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release Far2|Win32'">$(FAR2)\Plugins\XMLDOM\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release Far3|Win32'">$(FAR3)\Plugins\XMLDOM\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release Far2|Win32'">$(Platform) $(Configuration)\</IntDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release Far3|Win32'">$(Platform) $(Configuration)\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release Far2|Win32'">false</LinkIncremental>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release Far3|Win32'">false</LinkIncremental>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release Far2|x64'">$(FAR264)\Plugins\json\</OutDir>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release Far3|x64'">$(FAR364)\Plugins\json\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release Far2|x64'">$(FAR264)\Plugins\XMLDOM\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release Far3|x64'">$(FAR364)\Plugins\XMLDOM\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release Far2|x64'">$(Platform) $(Configuration)\</IntDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release Far3|x64'">$(Platform) $(Configuration)\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release Far2|x64'">false</LinkIncremental>
@@ -216,18 +216,18 @@
     <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release Far1|x64'">AllRules.ruleset</CodeAnalysisRuleSet>
     <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release Far1|x64'" />
     <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release Far1|x64'" />
-    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug Far2|x64'">rapidjson\include\rapidjson;$(FAR2)\PluginSDK\Headers.c;$(IncludePath)</IncludePath>
-    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug Far3|x64'">rapidjson\include\rapidjson;$(FAR3)\PluginSDK\Headers.c;$(IncludePath)</IncludePath>
-    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release Far2|x64'">rapidjson\include\rapidjson;$(FAR2)\PluginSDK\Headers.c;$(IncludePath)</IncludePath>
-    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release Far3|x64'">rapidjson\include\rapidjson;$(FAR3)\PluginSDK\Headers.c;$(IncludePath)</IncludePath>
-    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug Far2|Win32'">rapidjson\include\rapidjson;$(FAR2)\PluginSDK\Headers.c;$(IncludePath)</IncludePath>
-    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug Far3|Win32'">rapidjson\include\rapidjson;$(FAR3)\PluginSDK\Headers.c;$(IncludePath)</IncludePath>
-    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release Far2|Win32'">rapidjson\include\rapidjson;$(FAR2)\PluginSDK\Headers.c;$(IncludePath)</IncludePath>
-    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release Far3|Win32'">rapidjson\include\rapidjson;$(FAR3)\PluginSDK\Headers.c;$(IncludePath)</IncludePath>
-    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug Far1|Win32'">rapidjson\include\rapidjson;$(FAR1)\PluginSDK\Headers.c;$(IncludePath)</IncludePath>
-    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release Far1|Win32'">rapidjson\include\rapidjson;$(FAR1)\PluginSDK\Headers.c;$(IncludePath)</IncludePath>
-    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug Far1|x64'">rapidjson\include\rapidjson;$(FAR1)\PluginSDK\Headers.c;$(IncludePath)</IncludePath>
-    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release Far1|x64'">rapidjson\include\rapidjson;$(FAR1)\PluginSDK\Headers.c;$(IncludePath)</IncludePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug Far2|x64'">$(FAR2)\PluginSDK\Headers.c;$(IncludePath)</IncludePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug Far3|x64'">$(FAR3)\PluginSDK\Headers.c;$(IncludePath)</IncludePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release Far2|x64'">$(FAR2)\PluginSDK\Headers.c;$(IncludePath)</IncludePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release Far3|x64'">$(FAR3)\PluginSDK\Headers.c;$(IncludePath)</IncludePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug Far2|Win32'">$(FAR2)\PluginSDK\Headers.c;$(IncludePath)</IncludePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug Far3|Win32'">$(FAR3)\PluginSDK\Headers.c;$(IncludePath)</IncludePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release Far2|Win32'">$(FAR2)\PluginSDK\Headers.c;$(IncludePath)</IncludePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release Far3|Win32'">$(FAR3)\PluginSDK\Headers.c;$(IncludePath)</IncludePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug Far1|Win32'">$(FAR1)\PluginSDK\Headers.c;$(IncludePath)</IncludePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release Far1|Win32'">$(FAR1)\PluginSDK\Headers.c;$(IncludePath)</IncludePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug Far1|x64'">$(FAR1)\PluginSDK\Headers.c;$(IncludePath)</IncludePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release Far1|x64'">$(FAR1)\PluginSDK\Headers.c;$(IncludePath)</IncludePath>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug Far2|Win32'">true</LinkIncremental>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug Far3|Win32'">true</LinkIncremental>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug Far1|x64'">true</LinkIncremental>
@@ -236,7 +236,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug Far1|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;json_EXPORTS;_USRDLL;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;XMLDOM_EXPORTS;_USRDLL;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -250,7 +250,7 @@
       <AdditionalDependencies>version.lib;msvcprtd.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ModuleDefinitionFile>plugin.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>$(OutDir)json.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>$(OutDir)XMLDOM.pdb</ProgramDatabaseFile>
       <SubSystem>Windows</SubSystem>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention>
@@ -259,18 +259,6 @@
       <IgnoreSpecificDefaultLibraries>libcpmtd0.lib</IgnoreSpecificDefaultLibraries>
     </Link>
     <ProjectReference />
-    <PostBuildEvent>
-      <Command>xcopy /y /d "$(SolutionDir)*.lng" "$(OutDir)"
-</Command>
-    </PostBuildEvent>
-    <PreBuildEvent>
-      <Command>
-      </Command>
-    </PreBuildEvent>
-    <CustomBuildStep />
-    <CustomBuildStep />
-    <CustomBuildStep />
-    <CustomBuildStep />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug Far1|x64'">
     <Midl>
@@ -278,7 +266,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;json_EXPORTS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;XMLDOM_EXPORTS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -292,7 +280,7 @@
       <AdditionalDependencies>version.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ModuleDefinitionFile>plugin.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>$(OutDir)json.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>$(OutDir)XMLDOM.pdb</ProgramDatabaseFile>
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
@@ -300,17 +288,12 @@
       </DataExecutionPrevention>
       <TargetMachine>MachineX64</TargetMachine>
     </Link>
-    <PostBuildEvent>
-      <Command>xcopy /y /d "$(SolutionDir)*.lng" "$(OutDir)"
-</Command>
-    </PostBuildEvent>
-    <CustomBuildStep />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release Far1|Win32'">
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <OmitFramePointers>true</OmitFramePointers>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;json_EXPORTS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;XMLDOM_EXPORTS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -330,11 +313,6 @@
       </DataExecutionPrevention>
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
-    <PostBuildEvent>
-      <Command>xcopy /y /d "$(SolutionDir)*.lng" "$(OutDir)"
-</Command>
-    </PostBuildEvent>
-    <CustomBuildStep />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release Far1|x64'">
     <Midl>
@@ -343,7 +321,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <OmitFramePointers>true</OmitFramePointers>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;json_EXPORTS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;XMLDOM_EXPORTS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -363,16 +341,11 @@
       </DataExecutionPrevention>
       <TargetMachine>MachineX64</TargetMachine>
     </Link>
-    <PostBuildEvent>
-      <Command>xcopy /y /d "$(SolutionDir)*.lng" "$(OutDir)"
-</Command>
-    </PostBuildEvent>
-    <CustomBuildStep />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug Far2|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;json_EXPORTS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;XMLDOM_EXPORTS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -385,23 +358,18 @@
       <AdditionalDependencies>version.lib;msvcprtd.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ModuleDefinitionFile>PluginW.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>$(OutDir)json.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>$(OutDir)XMLDOM.pdb</ProgramDatabaseFile>
       <SubSystem>Windows</SubSystem>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention>
       </DataExecutionPrevention>
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
-    <PostBuildEvent>
-      <Command>xcopy /y /d "$(SolutionDir)*.lng" "$(OutDir)"
-</Command>
-    </PostBuildEvent>
-    <CustomBuildStep />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug Far3|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;FAR3;_DEBUG;_WINDOWS;_USRDLL;json_EXPORTS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;FAR3;_DEBUG;_WINDOWS;_USRDLL;XMLDOM_EXPORTS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -414,18 +382,13 @@
       <AdditionalDependencies>version.lib;msvcprtd.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ModuleDefinitionFile>PluginW3.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>$(OutDir)json.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>$(OutDir)XMLDOM.pdb</ProgramDatabaseFile>
       <SubSystem>Windows</SubSystem>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention>
       </DataExecutionPrevention>
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
-    <PostBuildEvent>
-      <Command>xcopy /y /d "$(SolutionDir)*.lng" "$(OutDir)"
-</Command>
-    </PostBuildEvent>
-    <CustomBuildStep />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug Far2|x64'">
     <Midl>
@@ -433,7 +396,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;json_EXPORTS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;XMLDOM_EXPORTS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -446,7 +409,7 @@
       <AdditionalDependencies>version.lib;msvcprtd.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ModuleDefinitionFile>PluginW.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>$(OutDir)json.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>$(OutDir)XMLDOM.pdb</ProgramDatabaseFile>
       <SubSystem>Windows</SubSystem>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention>
@@ -454,11 +417,6 @@
       <TargetMachine>MachineX64</TargetMachine>
       <IgnoreSpecificDefaultLibraries>libcpmtd0.lib</IgnoreSpecificDefaultLibraries>
     </Link>
-    <PostBuildEvent>
-      <Command>xcopy /y /d "$(SolutionDir)*.lng" "$(OutDir)"
-</Command>
-    </PostBuildEvent>
-    <CustomBuildStep />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug Far3|x64'">
     <Midl>
@@ -466,7 +424,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;FAR3;_DEBUG;_WINDOWS;_USRDLL;json_EXPORTS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;FAR3;_DEBUG;_WINDOWS;_USRDLL;XMLDOM_EXPORTS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -479,7 +437,7 @@
       <AdditionalDependencies>version.lib;msvcprtd.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ModuleDefinitionFile>PluginW3.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>$(OutDir)json.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>$(OutDir)XMLDOM.pdb</ProgramDatabaseFile>
       <SubSystem>Windows</SubSystem>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention>
@@ -487,17 +445,12 @@
       <TargetMachine>MachineX64</TargetMachine>
       <IgnoreSpecificDefaultLibraries>libcpmtd0.lib</IgnoreSpecificDefaultLibraries>
     </Link>
-    <PostBuildEvent>
-      <Command>xcopy /y /d "$(SolutionDir)*.lng" "$(OutDir)"
-</Command>
-    </PostBuildEvent>
-    <CustomBuildStep />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release Far2|Win32'">
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <OmitFramePointers>true</OmitFramePointers>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;json_EXPORTS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;XMLDOM_EXPORTS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -517,17 +470,12 @@
       </DataExecutionPrevention>
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
-    <PostBuildEvent>
-      <Command>xcopy /y /d "$(SolutionDir)*.lng" "$(OutDir)"
-</Command>
-    </PostBuildEvent>
-    <CustomBuildStep />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release Far3|Win32'">
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <OmitFramePointers>true</OmitFramePointers>
-      <PreprocessorDefinitions>WIN32;FAR3;NDEBUG;_WINDOWS;_USRDLL;json_EXPORTS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;FAR3;NDEBUG;_WINDOWS;_USRDLL;XMLDOM_EXPORTS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -548,11 +496,6 @@
       </DataExecutionPrevention>
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
-    <PostBuildEvent>
-      <Command>xcopy /y /d "$(SolutionDir)*.lng" "$(OutDir)"
-</Command>
-    </PostBuildEvent>
-    <CustomBuildStep />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release Far2|x64'">
     <Midl>
@@ -561,7 +504,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <OmitFramePointers>true</OmitFramePointers>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;json_EXPORTS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;XMLDOM_EXPORTS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -581,11 +524,6 @@
       </DataExecutionPrevention>
       <TargetMachine>MachineX64</TargetMachine>
     </Link>
-    <PostBuildEvent>
-      <Command>xcopy /y /d "$(SolutionDir)*.lng" "$(OutDir)"
-</Command>
-    </PostBuildEvent>
-    <CustomBuildStep />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release Far3|x64'">
     <Midl>
@@ -594,7 +532,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <OmitFramePointers>true</OmitFramePointers>
-      <PreprocessorDefinitions>WIN32;FAR3;NDEBUG;_WINDOWS;_USRDLL;json_EXPORTS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;FAR3;NDEBUG;_WINDOWS;_USRDLL;XMLDOM_EXPORTS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -615,58 +553,13 @@
       </DataExecutionPrevention>
       <TargetMachine>MachineX64</TargetMachine>
     </Link>
-    <PostBuildEvent>
-      <Command>xcopy /y /d "$(SolutionDir)*.lng" "$(OutDir)"
-</Command>
-    </PostBuildEvent>
-    <CustomBuildStep />
   </ItemDefinitionGroup>
   <ItemGroup>
-    <CustomBuild Include="lang.templ">
-      <FileType>Document</FileType>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug Far1|Win32'">if exist ..\..\..\FAR\fardev\unicode_far\tools\lng.generator.exe ..\..\..\FAR\fardev\unicode_far\tools\lng.generator.exe  -nc -ol %(FullPath)</Command>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug Far2|Win32'">if exist ..\..\..\FAR\fardev\unicode_far\tools\lng.generator.exe ..\..\..\FAR\fardev\unicode_far\tools\lng.generator.exe  -nc -ol %(FullPath)</Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug Far2|Win32'">Compiling language file</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug Far2|Win32'">jsonlang.h;jsonEng.lng;jsonRus.lng;%(Outputs)</Outputs>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug Far1|Win32'">Compiling language file</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug Far1|Win32'">jsonlang.h;jsonEng.lng;jsonRus.lng;%(Outputs)</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug Far3|Win32'">if exist ..\..\..\FAR\fardev\unicode_far\tools\lng.generator.exe ..\..\..\FAR\fardev\unicode_far\tools\lng.generator.exe  -nc -ol %(FullPath)</Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug Far3|Win32'">Compiling language file</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug Far3|Win32'">jsonlang.h;jsonEng.lng;jsonRus.lng;%(Outputs)</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release Far2|Win32'">if exist ..\..\..\FAR\fardev\unicode_far\tools\lng.generator.exe ..\..\..\FAR\fardev\unicode_far\tools\lng.generator.exe  -nc -ol %(FullPath)</Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release Far2|Win32'">Compiling language file</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release Far2|Win32'">jsonlang.h;jsonEng.lng;jsonRus.lng;%(Outputs)</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release Far1|Win32'">if exist ..\..\..\FAR\fardev\unicode_far\tools\lng.generator.exe ..\..\..\FAR\fardev\unicode_far\tools\lng.generator.exe  -nc -ol %(FullPath)</Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release Far1|Win32'">Compiling language file</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release Far1|Win32'">jsonlang.h;jsonEng.lng;jsonRus.lng;%(Outputs)</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release Far3|Win32'">if exist ..\..\..\FAR\fardev\unicode_far\tools\lng.generator.exe ..\..\..\FAR\fardev\unicode_far\tools\lng.generator.exe  -nc -ol %(FullPath)</Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release Far3|Win32'">Compiling language file</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release Far3|Win32'">jsonlang.h;jsonEng.lng;jsonRus.lng;%(Outputs)</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug Far2|x64'">if exist ..\..\..\FAR\fardev\unicode_far\tools\lng.generator.exe ..\..\..\FAR\fardev\unicode_far\tools\lng.generator.exe  -nc -ol %(FullPath)</Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug Far2|x64'">Compiling language file</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug Far2|x64'">jsonlang.h;jsonEng.lng;jsonRus.lng;%(Outputs)</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug Far1|x64'">if exist ..\..\..\FAR\fardev\unicode_far\tools\lng.generator.exe ..\..\..\FAR\fardev\unicode_far\tools\lng.generator.exe  -nc -ol %(FullPath)</Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug Far1|x64'">Compiling language file</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug Far1|x64'">jsonlang.h;jsonEng.lng;jsonRus.lng;%(Outputs)</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug Far3|x64'">if exist ..\..\..\FAR\fardev\unicode_far\tools\lng.generator.exe ..\..\..\FAR\fardev\unicode_far\tools\lng.generator.exe  -nc -ol %(FullPath)</Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug Far3|x64'">Compiling language file</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug Far3|x64'">jsonlang.h;jsonEng.lng;jsonRus.lng;%(Outputs)</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release Far2|x64'">if exist ..\..\..\FAR\fardev\unicode_far\tools\lng.generator.exe ..\..\..\FAR\fardev\unicode_far\tools\lng.generator.exe  -nc -ol %(FullPath)</Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release Far2|x64'">Compiling language file</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release Far2|x64'">jsonlang.h;jsonEng.lng;jsonRus.lng;%(Outputs)</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release Far1|x64'">if exist ..\..\..\FAR\fardev\unicode_far\tools\lng.generator.exe ..\..\..\FAR\fardev\unicode_far\tools\lng.generator.exe  -nc -ol %(FullPath)</Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release Far1|x64'">Compiling language file</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release Far1|x64'">jsonlang.h;jsonEng.lng;jsonRus.lng;%(Outputs)</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release Far3|x64'">if exist ..\..\..\FAR\fardev\unicode_far\tools\lng.generator.exe ..\..\..\FAR\fardev\unicode_far\tools\lng.generator.exe  -nc -ol %(FullPath)</Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release Far3|x64'">Compiling language file</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release Far3|x64'">jsonlang.h;jsonEng.lng;jsonRus.lng;%(Outputs)</Outputs>
-    </CustomBuild>
     <None Include="changelog" />
     <None Include="Plugin.def" />
     <None Include="PluginW.def" />
     <None Include="PluginW3.def" />
-    <None Include="ReadMe.txt" />
-    <None Include="todo.txt" />
+    <None Include="todo" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\YMSExport.cpp">
@@ -697,8 +590,9 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release Far1|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release Far1|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="json.cpp" />
-    <ClCompile Include="jsonPlugin.cpp" />
+    <ClCompile Include="XMLDOM.cpp" />
+    <ClCompile Include="xmlfile.cpp" />
+    <ClCompile Include="XMLPlugin.cpp" />
     <ClCompile Include="..\YMSPlugin.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Far2|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Far3|Win32'">true</ExcludedFromBuild>
@@ -736,12 +630,12 @@
     <ClInclude Include="resource.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="version.h" />
-    <ClInclude Include="json.h" />
-    <ClInclude Include="jsonlang.h" />
+    <ClInclude Include="XMLDOM.h" />
+    <ClInclude Include="XMLDOMlang.h" />
     <ClInclude Include="..\YMSPlugin.h" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="json.rc" />
+    <ResourceCompile Include="XMLDOM.rc" />
   </ItemGroup>
   <ItemGroup>
     <MASM Include="..\vc10.asm">
