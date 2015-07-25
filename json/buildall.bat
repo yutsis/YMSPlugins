@@ -7,7 +7,7 @@ for /F "tokens=3" %%a in ('awk "/#define +VERSIONMAJOR +[0-9]+/" version.h') do 
 for /F "tokens=3" %%a in ('awk "/#define +VERSIONMINOR +[0-9]+/" version.h') do set vermin=%%a
 set versfx=%vermaj%%vermin%
 
-goto files
+:goto files
 
 for %%a in ("Release FAR1|Win32" "Release FAR2|Win32" "Release FAR2|x64" "Release FAR3|Win32" "Release FAR3|x64") do (
 	devenv "json.sln" /rebuild %%a
