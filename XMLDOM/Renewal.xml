@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<renewal>
+	<plugin guid="{F10829AE-E1DE-4A70-8266-176DF3841044}">
+		<home arch="any">http://michael-y.org/FAR/</home>
+		<url arch="any">http://michael-y.org/FAR/</url>
+		<regex arch="x86">XMLDOM(\d)(\d\d)W3\.zip</regex>
+		<regex arch="x64">XMLDOM(\d)(\d\d)W3x64\.zip</regex>
+		<srcpath arch="any">XMLDOM</srcpath>
+		<postinstall arch="any">del /F /Q whatsnew.txt</postinstall>
+	</plugin>
+</renewal>
