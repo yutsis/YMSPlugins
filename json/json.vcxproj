@@ -661,6 +661,7 @@
       <Message Condition="'$(Configuration)|$(Platform)'=='Release Far3|x64'">Compiling language file</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release Far3|x64'">jsonlang.h;jsonEng.lng;jsonRus.lng;%(Outputs)</Outputs>
     </CustomBuild>
+    <None Include="changelog" />
     <None Include="Plugin.def" />
     <None Include="PluginW.def" />
     <None Include="PluginW3.def" />
