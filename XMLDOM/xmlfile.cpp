@@ -207,7 +207,7 @@ void CXMLFile::GetMSXMLVersionInfo()
     if(!size) return;
     TCHAR* pBuffer = new TCHAR[size];
     if(!GetFileVersionInfo(FilePath, 0, size, pBuffer)) {
-	delete pBuffer;
+	delete[] pBuffer;
 	return;
     }
 
@@ -224,7 +224,7 @@ void CXMLFile::GetMSXMLVersionInfo()
     }
     if(ofs >= size)
     {
-	delete pBuffer;
+	delete[] pBuffer;
 	return;
     }	
     TCHAR* langcode;
@@ -255,7 +255,7 @@ void CXMLFile::GetMSXMLVersionInfo()
     sMSXMLVersion = pDesc;
     sMSXMLVersion += ' ';
     sMSXMLVersion += pVersion;
-    delete pBuffer;
+    delete[] pBuffer;
 }
 
 void CXMLFile::Save(LPCTSTR filename)

@@ -157,7 +157,7 @@ XMLPlugin::~XMLPlugin()
         delete infoPanelLine[i].Data;
     }
 #endif
-    delete infoPanelLine;
+    delete[] infoPanelLine;
 }
 
 KeyBarItem KeyBarItems[] = {
@@ -201,7 +201,7 @@ void XMLPlugin::GetOpenPluginInfo(OpenPluginInfo& info)
     if(bChanged) sPanelTitle += '*';
     if(iXPathSubDir == 0) {
         sPanelTitle += ':';
-        sPanelTitle += sCurXPath.c_str();
+        sPanelTitle += sCurXPath;
     } else if(*CurDir) {
         sPanelTitle += ':';
         sPanelTitle += CurDir;
@@ -315,7 +315,7 @@ static void ParseTime(PCWSTR sTime, FILETIME& ft)
 #ifdef UNICODE
 void XMLPlugin::FreeFileNames(PluginPanelItem& item)
 {
-    delete item.FileName;
+    delete[] item.FileName;
 }
 #endif
 
@@ -421,7 +421,7 @@ BOOL XMLPlugin::GetFindData(PluginPanelItem*& PanelItem, int& itemCount, int OpM
                         {
                             tstring name0(item0->Owner);
                             bool bNameToo = _tcscmp(item0->FileName, item0->Owner) == 0;
-                            delete item0->Owner;
+                            delete[] item0->Owner;
                             item0->Owner = MakeItemDesc((name0 + _T("[0]")).c_str());
                             if(bNameToo)
                             {
@@ -742,7 +742,7 @@ void XMLPlugin::WriteXML(PCTSTR filename, _bstr_t& xml, bool bAppend)
         *(DWORD*)pOut = 0xbfbbef; //byte-order mark
         WideCharToMultiByte(CP_UTF8, 0, wxml, -1, pOut + (bIntlChars?3:0), l, 0,0);
         WriteBufToFile(filename, (BYTE*)pOut, strlen(pOut));
-        delete pOut;
+        delete[] pOut;
     }
     else
     {
@@ -1115,7 +1115,7 @@ BOOL XMLPlugin::ProcessKey(int Key, unsigned int ControlState)
                 Reread();
                 break;
             }
-            delete items;
+            delete[] items;
             return TRUE;
         }
         if(Key==VK_RETURN && ControlState==PKF_SHIFT)
@@ -1413,7 +1413,7 @@ int XMLPlugin::MakeDirectory(WCONST WTYPE Name, int OpMode)
     if(!(OpMode&OPM_SILENT)) {
         RUN_DIALOG(CreateNewDialogGuid, -1,-1,76,6,_T("CreateNew"),items,_countof(MkkeyItems));
         if(DIALOG_RESULT == -1) {
-            delete items;
+            delete[] items;
             return TRUE;
         }
         newName = GetItemText(items, 2);
@@ -1443,7 +1443,7 @@ int XMLPlugin::MakeDirectory(WCONST WTYPE Name, int OpMode)
 #else
         strcpy(Name, items[2].Data);
 #endif
-    delete items;
+    delete[] items;
     return rc;
 }
 BOOL XMLPlugin::CloseEvent()

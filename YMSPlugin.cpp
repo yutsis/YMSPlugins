@@ -43,7 +43,7 @@ void YMSPlugin::DeleteKeyBarTitles()
     if(pKeyBarTitles != NULL)
     {
 #ifdef FAR3
-	delete pKeyBarTitles->Labels;
+	delete[] pKeyBarTitles->Labels;
 #endif
 	delete pKeyBarTitles;
     }
@@ -130,7 +130,7 @@ int YMSPlugin::WinError(LPCTSTR pMsg, LPCSTR pSourceModule)
         /*char* p = buf + strlen(buf) - 1;
         if(p[-1]=='\r' && *p=='\n') p[-1] = 0;*/
         rc = Message(FMSG_WARNING|FMSG_ALLINONE|FMSG_MB_OK, _T("WinError"), (PCTSTR*)buf, 0, 0);
-        delete buf;
+        delete[] buf;
     }
     if(bAllocated) LocalFree( lpMsgBuf );
     return rc;
@@ -571,7 +571,7 @@ BOOL YMSPlugin::ProcessKey(int key, unsigned int controlState)
             if((!bKeysAsDirs || !IsFolder(*items)) && _tcscmp(items->FileName,_T("..")))
             {
 #ifdef UNICODE
-                delete items;
+                delete[] items;
 #endif
                 return FALSE;
             }
@@ -676,10 +676,10 @@ void YMSPlugin::FreeFindData(PluginPanelItem* PanelItem, int count)
     {
         PluginPanelItem& item = PanelItem[i];
         FreeFileNames(item);
-        delete item.Owner;
-        delete item.Description;
+        delete[] item.Owner;
+        delete[] item.Description;
     }
-    delete PanelItem;
+    delete[] PanelItem;
 }
 #endif
 
