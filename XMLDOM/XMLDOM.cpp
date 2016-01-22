@@ -303,7 +303,7 @@ int WINAPI XMLPlugin::EXP_NAME(Configure)(int)
 
   RUN_DIALOG(ConfigDialogGuid, -1, -1, 76, 15, _T("Config"), ItemsStr, itemCount);
   if(DIALOG_RESULT != 13 /*OK*/) {
-    delete ItemsStr;
+    delete[] ItemsStr;
     return FALSE;
   }
   bExportUTF = GetSelected(ItemsStr,2);
@@ -318,7 +318,7 @@ int WINAPI XMLPlugin::EXP_NAME(Configure)(int)
   settings.Set(sStartUnsorted, bStartUnsorted);
 
   XMLPlugin::LoadIdAttributes();
-  delete ItemsStr;
+  delete[] ItemsStr;
 
   return TRUE;
 }

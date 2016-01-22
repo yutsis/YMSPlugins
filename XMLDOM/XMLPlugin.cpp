@@ -153,8 +153,8 @@ XMLPlugin::~XMLPlugin()
 #ifdef UNICODE
     for(int i=NFIXEDLINES+1; i<nInfoLines; i++)
     {
-        delete infoPanelLine[i].Text;
-        delete infoPanelLine[i].Data;
+        delete[] infoPanelLine[i].Text;
+        delete[] infoPanelLine[i].Data;
     }
 #endif
     delete[] infoPanelLine;
@@ -426,7 +426,7 @@ BOOL XMLPlugin::GetFindData(PluginPanelItem*& PanelItem, int& itemCount, int OpM
                             if(bNameToo)
                             {
 #ifdef UNICODE
-                                delete item0->FileName;
+                                delete[] item0->FileName;
                                 item0->FileName = _tcsdup(item0->Owner);
 #else
                                 strncpy(item0->FindData.cFileName, item0->Owner, sizeof item0->FindData.cFileName);
@@ -517,7 +517,7 @@ BOOL XMLPlugin::GetFindData(PluginPanelItem*& PanelItem, int& itemCount, int OpM
                             } catch(...) {}
                             if(text1.length())
                             {
-                                delete item.Owner;
+                                delete[] item.Owner;
                                 item.Owner = MakeItemDesc(text1.GetBSTR(), 256);
                             }
                         }
@@ -538,7 +538,7 @@ BOOL XMLPlugin::GetFindData(PluginPanelItem*& PanelItem, int& itemCount, int OpM
     }
     catch(_com_error e) {
         WinError(e);
-        delete PanelItem;
+        delete[] PanelItem;
         bRet = FALSE;
     }
     return bRet;
@@ -1741,5 +1741,5 @@ _run:
             Redraw();
         }
     }
-    delete ItemsStr;
+    delete[] ItemsStr;
 }

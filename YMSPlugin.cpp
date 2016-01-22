@@ -442,7 +442,7 @@ void YMSPlugin::PutToCmdLine(PCTSTR tmp, bool bSpace)
     _tcscat(cmdbuf, tmp);
     if(bSpace) _tcscat(cmdbuf, _T(" "));
     Control(FCTL_SETCMDLINE, cmdbuf);
-    delete tmp1;
+    delete[] tmp1;
 }
 
 void YMSPlugin::CreateTmpDir(TCHAR* TmpPath)
