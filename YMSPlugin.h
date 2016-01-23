@@ -574,7 +574,7 @@ struct MenuItem : FarMenuItem
 #ifdef UNICODE
 	    Text = _tcsdup(text);
     }
-    ~MenuItem() { delete[] Text; }
+    ~MenuItem() { free((void*)Text); }
     MenuItem(const MenuItem& item2) { *this = item2; }
     void operator=(const MenuItem& item2) { memcpy(this, &item2, sizeof *this); Text = _tcsdup(item2.Text); }
 #else
