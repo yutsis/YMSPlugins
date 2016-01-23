@@ -687,6 +687,7 @@ BOOL XMLPlugin::SetDirectory(PCTSTR Dir, int iOpMode)
             DWORD iItem = (DWORD)CurItem->USERDATA & ~USERDATA_DIR;
             SetCurNode(childList->item[iItem], Dir);
             dwParentItem = (DWORD)CurItem->USERDATA;
+            delete[] CurItem;
             return TRUE;
         }
     }
