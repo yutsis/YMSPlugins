@@ -57,7 +57,7 @@ InfoPanelLine fixedInfoPanelLine[] = {
 #else
     { _T("       ANSI version (32-bit)     "), _T(""), 0},
 #endif
-    { _T("  :) Michael Yutsis, 2003-2015"), _T(""), 0 },
+    { _T("  :) Michael Yutsis, 2003-2016"), _T(""), 0 },
     { _T(""), _T(""), 1 },
     { _T("XML DOM:"), _T(""), 0 },
 };
@@ -891,7 +891,7 @@ void XMLPlugin::Redraw(DWORD currentID)
     // Keep cursor position
     DWORD dwKeepUD = currentID == 0xffffffff ? (DWORD)
 #ifdef UNICODE
-	    auto_ptr<PluginPanelItem>
+	    unique_ptr<PluginPanelItem>
 #endif
                 (GetCurrentItem())->USERDATA : currentID;
 

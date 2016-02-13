@@ -478,7 +478,7 @@ BOOL YMSPlugin::ProcessKey(int key, unsigned int controlState)
     {
         SetDirectory(
 #ifdef UNICODE
-	    auto_ptr<PluginPanelItem>
+	    unique_ptr<PluginPanelItem>
 #endif
 		(GetCurrentItem())->FileName);
         Reread();
