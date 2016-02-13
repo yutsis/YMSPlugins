@@ -6,6 +6,7 @@ void WINAPI YMSExport::ClosePanelW(const ClosePanelInfo *info)
 {
     if(info->hPanel != INVALID_HANDLE_VALUE)
 	delete (YMSPlugin*)info->hPanel;
+    _CrtDumpMemoryLeaks();
 }
 
 int WINAPI YMSExport::DeleteFilesW(const DeleteFilesInfo *info)
@@ -97,6 +98,7 @@ int WINAPI YMSExport::SetDirectoryW(const SetDirectoryInfo *info)
 void WINAPI YMSExport::EXP_NAME(ClosePlugin)(HANDLE hPlugin)
 {
   delete (YMSPlugin*)hPlugin;
+  _CrtDumpMemoryLeaks();
 }
 
 int WINAPI YMSExport::EXP_NAME(DeleteFiles)(HANDLE hPlugin, PluginPanelItem *PanelItem,int ItemsNumber,int OpMode)

@@ -57,7 +57,7 @@ InfoPanelLine fixedInfoPanelLine[] = {
 #else
     { _T("       ANSI version (32-bit)     "), _T(""), 0},
 #endif
-    { _T("  :) Michael Yutsis, 2003-2014"), _T(""), 0 },
+    { _T("  :) Michael Yutsis, 2003-2015"), _T(""), 0 },
     { _T(""), _T(""), 1 },
     { _T("XML DOM:"), _T(""), 0 },
 };
@@ -679,15 +679,14 @@ BOOL XMLPlugin::SetDirectory(PCTSTR Dir, int iOpMode)
     //long nNodes = childList->length;
 
     // Check if current item on the panel is the same as Dir.
-    PluginPanelItem* CurItem = GetCurrentItem();
-    if(CurItem != NULL)
+    CURRENTITEM_PTR(CurItem);
+    if(CurItem)
     {
         if(((DWORD)CurItem->USERDATA & USERDATA_DIR) && !_tcscmp(CurItem->FileName, Dir)) {
             //if yes, use index stored in it
             DWORD iItem = (DWORD)CurItem->USERDATA & ~USERDATA_DIR;
             SetCurNode(childList->item[iItem], Dir);
             dwParentItem = (DWORD)CurItem->USERDATA;
-            delete[] CurItem;
             return TRUE;
         }
     }
@@ -890,7 +889,11 @@ void SetOrDelValue(PluginSettings& settings, KEY_TYPE key, PCWSTR valName, PCWST
 void XMLPlugin::Redraw(DWORD currentID)
 {
     // Keep cursor position
-    DWORD dwKeepUD = currentID == 0xffffffff ? (DWORD)GetCurrentItem()->USERDATA : currentID;
+    DWORD dwKeepUD = currentID == 0xffffffff ? (DWORD)
+#ifdef UNICODE
+	    auto_ptr<PluginPanelItem>
+#endif
+                (GetCurrentItem())->USERDATA : currentID;
 
 #ifdef UNICODE
     Control(FCTL_UPDATEPANEL, 1, NULL);
@@ -958,8 +961,8 @@ BOOL XMLPlugin::ProcessKey(int Key, unsigned int ControlState)
         }
         if(Key==VK_F3 && ControlState==PKF_SHIFT)
         {
-            PluginPanelItem& currentItem = *GetCurrentItem();
-            DWORD dwUD = (DWORD)currentItem.USERDATA;
+            CURRENTITEM_PTR(currentItem);
+            DWORD dwUD = (DWORD)currentItem->USERDATA;
             NodePtr node;
             if(dwUD&USERDATA_DIR)
             {
@@ -982,14 +985,14 @@ BOOL XMLPlugin::ProcessKey(int Key, unsigned int ControlState)
                 }
             }
             else
-                if(iXPathSubDir && _tcscmp(currentItem.FileName, _T("..")))
+                if(iXPathSubDir && _tcscmp(currentItem->FileName, _T("..")))
                     node = CurNode->attributes->item[dwUD]->definition;
             if(node!=0)
             {
                 TCHAR TmpPath[MAX_PATH];
                 CreateTmpDir(TmpPath);
-                WriteXML(MakeFileName(TmpPath, currentItem.Owner,0), node->xml, false);
-                Viewer(LastMadeName, currentItem.Owner);
+                WriteXML(MakeFileName(TmpPath, currentItem->Owner,0), node->xml, false);
+                Viewer(LastMadeName, currentItem->Owner);
             }
             return TRUE;
         }
@@ -1082,8 +1085,8 @@ BOOL XMLPlugin::ProcessKey(int Key, unsigned int ControlState)
         if(Key=='F' && ControlState==PKF_CONTROL)
         {
             tstring s;
-            GetItemFullPath(iXPathSubDir ? CurNode->childNodes : XPathSelection,
-                *GetCurrentItem(), s);
+            CURRENTITEM_PTR(item);
+            GetItemFullPath(iXPathSubDir ? CurNode->childNodes : XPathSelection, *item, s);
             PutToCmdLine(s.c_str());
             return TRUE;
         }
@@ -1121,8 +1124,8 @@ BOOL XMLPlugin::ProcessKey(int Key, unsigned int ControlState)
         }
         if(Key==VK_RETURN && ControlState==PKF_SHIFT)
         {
-            PluginPanelItem& item = *GetCurrentItem();
-            if((!bKeysAsDirs || !IsFolder(item)) && _tcscmp(item.FileName, _T("..")))
+            CURRENTITEM_PTR(item);
+            if((!bKeysAsDirs || !IsFolder(*item)) && _tcscmp(item->FileName, _T("..")))
                 return FALSE; //if not dir, let FAR process it;
             //in "keys as files", we process only ".."
 
@@ -1132,19 +1135,19 @@ BOOL XMLPlugin::ProcessKey(int Key, unsigned int ControlState)
             WCONST TCHAR* pTmpPath = TmpPath;
 
             int mode = OPM_SILENT | OPM_VIEW;
-            if(GetFiles(&item, 1, 0, WADDR pTmpPath, mode, ControlState!=0) == 1 )
+            if(GetFiles(&*item, 1, 0, WADDR pTmpPath, mode, ControlState!=0) == 1 )
             {
                 OpenPluginInfo info; TCHAR Title[256]; Title[_countof(Title)-1]=0;
                 GetOpenPluginInfo(info);
 
                 int ret;
-                if(ControlState || !_tcscmp(item.FileName, _T("..")))
+                if(ControlState || !_tcscmp(item->FileName, _T("..")))
                 {
                     ret=_sntprintf(Title, _countof(Title)-1, /*PFX*/_T("%s"), info.CurDir);
                     mode |= OPM_TWODOTS;
                 }
                 else
-                    ret = _sntprintf(Title,_countof(Title)-1,*info.CurDir ? /*PFX*/_T("%s\\%s"):/*PFX*/_T("%s%s"),info.CurDir,item.FileName);
+                    ret = _sntprintf(Title,_countof(Title)-1,*info.CurDir ? /*PFX*/_T("%s\\%s"):/*PFX*/_T("%s%s"),info.CurDir,item->FileName);
                 if(ret==-1)
                     _tcscpy(Title+_countof(Title)-4, _T("..."));
 
@@ -1169,10 +1172,11 @@ BOOL XMLPlugin::ProcessKey(int Key, unsigned int ControlState)
             }
             if(iXPathSubDir == 0)
                 return TRUE;
-            PluginPanelItem& currentItem = *GetCurrentItem();
-            if(!((DWORD)currentItem.USERDATA & USERDATA_DIR))
+            
+            CURRENTITEM_PTR(currentItem);
+            if(!((DWORD)currentItem->USERDATA & USERDATA_DIR))
                 return TRUE;
-            DWORD index = (DWORD)currentItem.USERDATA & ~USERDATA_DIR;
+            DWORD index = (DWORD)currentItem->USERDATA & ~USERDATA_DIR;
             if(index == 0 && Key == VK_UP || index == CurNode->childNodes->length - 1 && Key == VK_DOWN)
                 return TRUE;
             NodePtr node = CurNode->childNodes->item[index];
@@ -1185,7 +1189,7 @@ BOOL XMLPlugin::ProcessKey(int Key, unsigned int ControlState)
                 CurNode->insertBefore(node, _variant_t(CurNode->childNodes->item[Key == VK_DOWN ? ++index : --index], true));
 
             bChanged = true;
-            Redraw(index | ((DWORD)currentItem.USERDATA & USERDATA_DIR));
+            Redraw(index | ((DWORD)currentItem->USERDATA & USERDATA_DIR));
             return TRUE;
         }
     }
@@ -1694,12 +1698,12 @@ void XMLPlugin::EditSpecialDocs()
     OemBStr docName(XmlFile->documentElement->nodeName);
     SetData(ItemsStr[2], (LPCTSTR)docName);
 
-    PluginPanelItem& currentItem = *GetCurrentItem();
-    DWORD dwUD = (DWORD)currentItem.USERDATA;
+    CURRENTITEM_PTR(currentItem);
+    DWORD dwUD = (DWORD)currentItem->USERDATA;
     NodePtr node = (iXPathSubDir ? CurNode->childNodes : XPathSelection)->item[dwUD&~USERDATA_DIR];
 
     OemBStr nodeName, nameField, dateField, descField, ownerField;
-    if(IsFolder(currentItem)) {
+    if(IsFolder(*currentItem)) {
         nodeName = node->nodeName;
         SetData(ItemsStr[4], nodeName);
         auto iter = mapSpecialDocs.find(ItemsStr[4].ITEMDATA);

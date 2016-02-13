@@ -91,8 +91,10 @@ HANDLE WINAPI EXP_NAME(OpenFilePlugin)(LPCTSTR name, LPCBYTE data, int dataSize
 HANDLE WINAPI EXP_NAME(OpenPlugin)(int OpenFrom,int Item)
 {
     PCTSTR filePath;
-    auto_ptr<wchar_t> cmdLine;
-    auto_ptr<PluginPanelItem> panelItem;
+    unique_ptr <wchar_t> cmdLine;
+#ifdef UNICODE
+    unique_ptr <PluginPanelItem> panelItem;
+#endif
     switch(OpenFrom) {
         case OPEN_COMMANDLINE:
             {
@@ -118,7 +120,11 @@ HANDLE WINAPI EXP_NAME(OpenPlugin)(int OpenFrom,int Item)
 
         case OPEN_PLUGINSMENU:
             {
+#ifdef UNICODE
             panelItem.reset(GetCurrentItem());
+#else
+            PluginPanelItem* panelItem = GetCurrentItem();
+#endif
             filePath = panelItem->FileName;
             if(!filePath || !*filePath)
 	        return INVALID_HANDLE_VALUE;

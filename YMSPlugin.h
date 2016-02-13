@@ -1,5 +1,11 @@
 #pragma once
 
+#ifdef _DEBUG
+#define _CRTDBG_MAP_ALLOC
+#include <stdlib.h>
+#include <crtdbg.h> 
+#endif
+
 #define _FAR_USE_WIN32_FIND_DATA // only for FAR1 is used
 #include <plugin.hpp> // exact path for FAR1/2/3 is defined in project, property manager or environment
 
@@ -261,7 +267,7 @@ inline int GetEditorInfo(EditorInfo& editorInfo) {
 #endif
 }
 
-inline PluginPanelItem* GetCurrentItem() // caller must delete buffer in UNICODE version!! or use auto_ptr
+inline PluginPanelItem* GetCurrentItem() // caller must delete buffer in UNICODE version!! or use unique_ptr
 {
 #ifdef UNICODE
     int bufsize = Control(FCTL_GETCURRENTPANELITEM, 0);
@@ -274,8 +280,8 @@ inline PluginPanelItem* GetCurrentItem() // caller must delete buffer in UNICODE
     Control(FCTL_GETCURRENTPANELITEM, buf);
 #endif
     return (PluginPanelItem*)buf;
-#define CURRENTITEM_PTR(_item) auto_ptr<PluginPanelItem> _item(GetCurrentItem())
-#else //!UNICODE
+#define CURRENTITEM_PTR(_item) unique_ptr<PluginPanelItem> _item(GetCurrentItem())
+#else //FAR1
     PanelInfo panel;
     Control(FCTL_GETPANELINFO, &panel);
     return &panel.PanelItems[panel.CurrentItem];
