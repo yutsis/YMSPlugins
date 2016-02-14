@@ -8,6 +8,9 @@
 [!] Attention
 
 
+Version 2.51, 14 Feb 2016
+[-] Fixed a number of memory leaks (thanks to Aleksey Dobrunov for bringing it to my attention)
+
 Version 2.50, 25 Jul 2015
 
 [+] Identical names are displayed with indices: item[0], item[1] etc., which fixes selection problems
