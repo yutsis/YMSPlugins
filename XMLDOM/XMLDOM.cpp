@@ -88,7 +88,7 @@ HANDLE WINAPI EXP_NAME(OpenFilePlugin)(LPCTSTR name, LPCBYTE data, int dataSize
     }
 }
 
-HANDLE WINAPI EXP_NAME(OpenPlugin)(int OpenFrom,int Item)
+HANDLE WINAPI EXP_NAME(OpenPlugin)(int OpenFrom,INT_PTR Item)
 {
     PCTSTR filePath;
     unique_ptr <wchar_t> cmdLine;
