@@ -50,8 +50,8 @@ HANDLE WINAPI YMSExport::OpenW(const OpenInfo *info)
 	return ((OpenAnalyseInfo*)info->Data)->Handle;
     else
     {
-	extern HANDLE WINAPI OpenPluginW(int OpenFrom,int Item);
-	HANDLE h = OpenPluginW((int)info->OpenFrom, (int)info->Data);
+	extern HANDLE WINAPI OpenPluginW(int OpenFrom,INT_PTR Item);
+	HANDLE h = OpenPluginW((int)info->OpenFrom, (INT_PTR)info->Data);
 	return h == INVALID_HANDLE_VALUE ? NULL : h;
     }
 
