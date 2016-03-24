@@ -8,7 +8,12 @@
 [!] Attention
 
 
+Version 2.52, 24 Mar 2016 (64-bit only)
+
+[-] Crash in FAR/x64 under Windows 10 when opening from the command line.
+
 Version 2.51, 14 Feb 2016
+
 [-] Fixed a number of memory leaks (thanks to Aleksey Dobrunov for bringing it to my attention)
 
 Version 2.50, 25 Jul 2015
