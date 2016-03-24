@@ -1,5 +1,6 @@
 #define VERSIONMAJOR 2
-#define VERSIONMINOR 51
+#define VERSIONMINOR 52
+#define COPR_YEAR "2016"
 
 #define STRINGIZE_(_s) #_s
 #define WSTRINGIZE_(_s) L#_s
