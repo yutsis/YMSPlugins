@@ -37,7 +37,7 @@ InfoPanelLine infoPanelLines[] = {
 #else
     { _T("       ANSI version (32-bit)     "), _T(""), 0},
 #endif
-    { _T("     :) Michael Yutsis, 2015"), _T(""), 0 },
+    { _T("     :) Michael Yutsis, 2015-") _T(COPR_YEAR), _T(""), 0 },
 };
 
 JsonPlugin::JsonPlugin(LPCTSTR lpFileName, LPCBYTE data) : buf(10000),

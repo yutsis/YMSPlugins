@@ -32,8 +32,8 @@ BEGIN
             VALUE "FileDescription", "XML Browser Plugin for FAR"
             VALUE "FileVersion", VERSION "\0"
             VALUE "InternalName", "json browser"
-            VALUE "LegalCopyright", ":) Michael Yutsis, 2015"
-            VALUE "OriginalFilename", "XMLDOM.dll"
+            VALUE "LegalCopyright", ":) Michael Yutsis, 2015-" COPR_YEAR
+            VALUE "OriginalFilename", "json.dll"
             VALUE "ProductName", "XML Browser Plugin for FAR"
             VALUE "ProductVersion", VERSION "\0"
         END
