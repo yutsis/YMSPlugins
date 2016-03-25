@@ -63,7 +63,7 @@ HANDLE WINAPI EXP_NAME(OpenFilePlugin)(LPCTSTR name, LPCBYTE data, int dataSize
     return new JsonPlugin(name, data);
 }
 
-HANDLE WINAPI EXP_NAME(OpenPlugin)(int openFrom, int item)
+HANDLE WINAPI EXP_NAME(OpenPlugin)(int openFrom, INT_PTR item)
 {
     PCTSTR filePath;
     auto_ptr<wchar_t> cmdLine;
@@ -88,7 +88,7 @@ HANDLE WINAPI EXP_NAME(OpenPlugin)(int openFrom, int item)
                     *p1 = 0;
                 memmove(const_cast<PTSTR>(filePath), filePath + 1, (p1 - filePath + 1) * sizeof(TCHAR));
             }
-            }
+            }   
             break;
 
         case OPEN_PLUGINSMENU:
