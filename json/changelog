@@ -8,6 +8,12 @@
 [!] Attention
 
 
+Version 1.10, 26 Mar 2016
+
+[-] Crash in FAR/x64 under Windows 10 when opening from the command line.
+[-] The ".." item is exported with .json extension.
+
+
 Version 1.00, 11 Jul 2015
 
 [+] The first release.

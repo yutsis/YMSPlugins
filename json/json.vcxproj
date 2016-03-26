@@ -665,7 +665,7 @@
     <None Include="Plugin.def" />
     <None Include="PluginW.def" />
     <None Include="PluginW3.def" />
-    <None Include="ReadMe.txt" />
+    <None Include="ReadMe.md" />
     <None Include="todo.txt" />
   </ItemGroup>
   <ItemGroup>
