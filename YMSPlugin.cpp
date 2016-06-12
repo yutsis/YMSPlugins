@@ -661,7 +661,7 @@ int YMSPlugin::ProcessEvent(int Event, void *Param)
 
 void WriteBufToFile(PCTSTR filename, BYTE* data, DWORD cbData, bool bAppend)
 {
-    DWORD nb, sz = cbData==-1 ? _tcslen((TCHAR*)data)*sizeof(TCHAR) : cbData;
+    DWORD nb, sz = cbData==-1 ? (DWORD)_tcslen((TCHAR*)data)*sizeof(TCHAR) : cbData;
     HANDLE hFile;
     if( (hFile=CreateFile(filename, GENERIC_WRITE,FILE_SHARE_READ,0,bAppend?OPEN_ALWAYS:CREATE_ALWAYS,
         FILE_FLAG_SEQUENTIAL_SCAN,0))==INVALID_HANDLE_VALUE ||

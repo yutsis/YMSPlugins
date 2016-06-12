@@ -14,11 +14,6 @@
 #include <string>
 #include <vector>
 
-// Typecasts for WIN64
-#define _tsclen (DWORD)tsclen
-#define strlen (DWORD)strlen
-#define wcslen (DWORD)wcslen
-
 using namespace std;
 
 // YMS plugin framework ;)
@@ -171,8 +166,8 @@ public:
             retCode = (int)StartupInfo.DialogRun(hDlg);
     }
     ~Dialog() { StartupInfo.DialogFree(hDlg); }
-    int GetResult() { return retCode; }
-    HANDLE GetHDlg() { return hDlg; }
+    int GetResult() const { return retCode; }
+    HANDLE GetHDlg() const { return hDlg; }
 };
 
 #ifdef FAR3
@@ -297,9 +292,9 @@ class WinExcept {
   public:
     WinExcept(DWORD e) { err=e; bSilent = FALSE;}
     WinExcept() { err=GetLastError(); bSilent = FALSE;}
-    operator DWORD() { return err; }
+    operator DWORD() const { return err; }
     void SetSilent(bool b=true) { bSilent = b; }
-    DWORD GetSilent() { return bSilent; }
+    DWORD GetSilent() const { return bSilent; }
     void SetErr(DWORD e) { err = e; }
 };
 
@@ -312,7 +307,7 @@ class ActionException {
     bool bBreak;
     public:
 	ActionException(bool bBrk=false) { bBreak = bBrk; }
-	operator bool() { return bBreak; }
+	operator bool() const { return bBreak; }
 };
 
 // ProgressAction class is used to display progress indicators
@@ -599,7 +594,7 @@ struct MenuItem : FarMenuItem
 #endif
     }
 
-    bool IsSeparator() { return 
+    bool IsSeparator() const { return 
 #ifdef FAR3
 	(Flags & MIF_SEPARATOR)
 #else

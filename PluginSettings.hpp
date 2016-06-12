@@ -122,7 +122,7 @@ public:
 #endif
 
 
-   vector<tstring> EnumKeys(KEY_TYPE root = 0)
+   vector<tstring> EnumKeys(KEY_TYPE root = 0) const
    {
       vector<tstring> keys;
 #ifdef FAR3
@@ -150,7 +150,7 @@ public:
       return keys;
    }
 
-    PTSTR Get(PCTSTR szName, PTSTR buf, DWORD cchSize, PCTSTR Default, KEY_TYPE root = 0)
+    PTSTR Get(PCTSTR szName, PTSTR buf, DWORD cchSize, PCTSTR Default, KEY_TYPE root = 0) const
     {
         if(!Default)
             Default = _T("");
@@ -176,7 +176,7 @@ public:
     }
 #endif*/
 
-    unsigned __int64 Get(PCTSTR szName, unsigned __int64 Default, KEY_TYPE root = 0)
+    unsigned __int64 Get(PCTSTR szName, unsigned __int64 Default, KEY_TYPE root = 0) const
     {
 #ifdef FAR3
 	FarSettingsItem item={sizeof item, root,szName,FST_QWORD};
@@ -189,18 +189,18 @@ public:
         if(root == 0) root = hKey;
         unsigned __int64 val = 0;
         DWORD dwSize = sizeof val;
-        return RegQueryValueEx(hKey, szName, 0, NULL, (PBYTE)&val, &dwSize) == ERROR_SUCCESS ?
+        return RegQueryValueEx(root, szName, 0, NULL, (PBYTE)&val, &dwSize) == ERROR_SUCCESS ?
             val : Default;
 #endif
     }
 
-    __int64      Get(PCTSTR szName, __int64 Default, KEY_TYPE root = 0) { return (__int64)Get(szName,(unsigned __int64)Default, root); }
-    int          Get(PCTSTR szName, int Default, KEY_TYPE root = 0)  { return (int)Get(szName,(unsigned __int64)Default, root); }
-    unsigned int Get(PCTSTR szName, unsigned int Default, KEY_TYPE root = 0) { return (unsigned int)Get(szName,(unsigned __int64)Default, root); }
-    DWORD        Get(PCTSTR szName, DWORD Default, KEY_TYPE root = 0) { return (DWORD)Get(szName,(unsigned __int64)Default, root); }
-    bool         Get(PCTSTR szName, bool Default, KEY_TYPE root = 0) { return Get(szName,Default?1ull:0ull,root)?true:false; }
+    __int64      Get(PCTSTR szName, __int64 Default, KEY_TYPE root = 0) const { return (__int64)Get(szName,(unsigned __int64)Default, root); }
+    int          Get(PCTSTR szName, int Default, KEY_TYPE root = 0) const { return (int)Get(szName,(unsigned __int64)Default, root); }
+    unsigned int Get(PCTSTR szName, unsigned int Default, KEY_TYPE root = 0) const { return (unsigned int)Get(szName,(unsigned __int64)Default, root); }
+    DWORD        Get(PCTSTR szName, DWORD Default, KEY_TYPE root = 0) const { return (DWORD)Get(szName,(unsigned __int64)Default, root); }
+    bool         Get(PCTSTR szName, bool Default, KEY_TYPE root = 0) const { return Get(szName,Default?1ull:0ull,root)?true:false; }
 
-    size_t Get(PCTSTR szName, void *buf, size_t size, KEY_TYPE root = 0)
+    size_t Get(PCTSTR szName, void *buf, size_t size, KEY_TYPE root = 0) const
     {
 #ifdef FAR3
 	FarSettingsItem item={sizeof item, root,szName,FST_DATA};
@@ -239,7 +239,7 @@ public:
 	item.String=Value;
 	return SettingsControl(handle,SCTL_SET,0,&item)!=FALSE;
 #else
-        return SetReg(szName, Value, (_tcslen(Value)+1) * sizeof(TCHAR), REG_SZ, root);
+        return SetReg(szName, Value, (DWORD)(_tcslen(Value)+1) * sizeof(TCHAR), REG_SZ, root);
 #endif
     }
 
