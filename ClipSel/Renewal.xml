@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<renewal>
+	<plugin guid="{F10829AE-E1DE-4A70-8266-176DF3841044}">
+		<home arch="any">http://michael-y.org/FAR</home>
+		<url arch="any">http://michael-y.org/FAR</url>
+		<regex arch="x86">//michael-y.org/FAR/ClipSel\d\d\dW3\.zip</regex>
+		<regex arch="x64">//michael-y.org/FAR/ClipSel\d\d\dW3x64\.zip</regex>
+	</plugin>
+</renewal>

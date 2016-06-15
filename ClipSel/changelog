@@ -1,0 +1,25 @@
+               Select-from-Clipboard plugin change log
+
+[+] New
+[-] Bugfixes
+[*] Changes
+
+Version 2.10, 15 Jun 2016
+
+[-] FAR 3 API updates (the Options dialog didn't work)
+[*] Added license.txt; readme file format changed to .md.
+
+
+Version 2.01, 6 Dec 2012 (FAR 3 x64 only)
+
+[*] FAR 3 API changes
+
+
+Version 2.0, 15 Jun 2012
+
+[+] Unicode and 64-bit versions for FAR 2/3
+[+] Clipboard after Windows Explorer "copy" operation is understood
+[+] Added option "Trim spaces"
+[*] By default, only control characters with codes < 0x20 are separators
+[+] Filenames surrounded by quotes "" can include spaces and user-defined separators
+[-] Selection with international characters was always case-sensitive

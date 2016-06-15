@@ -1,0 +1,6 @@
+LIBRARY
+EXPORTS
+   Configure
+   GetPluginInfo
+   OpenPlugin
+   SetStartupInfo = ?SetStartupInfo@@YGXPAUPluginStartupInfo@@@Z

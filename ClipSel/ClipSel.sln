@@ -1,0 +1,50 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ClipSel", "ClipSel.vcxproj", "{7FC04E47-279A-4C5F-8681-5249B74B588D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug Far1|Win32 = Debug Far1|Win32
+		Debug Far1|x64 = Debug Far1|x64
+		Debug Far2|Win32 = Debug Far2|Win32
+		Debug Far2|x64 = Debug Far2|x64
+		Debug Far3|Win32 = Debug Far3|Win32
+		Debug Far3|x64 = Debug Far3|x64
+		Release Far1|Win32 = Release Far1|Win32
+		Release Far1|x64 = Release Far1|x64
+		Release Far2|Win32 = Release Far2|Win32
+		Release Far2|x64 = Release Far2|x64
+		Release Far3|Win32 = Release Far3|Win32
+		Release Far3|x64 = Release Far3|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7FC04E47-279A-4C5F-8681-5249B74B588D}.Debug Far1|Win32.ActiveCfg = Debug Far1|Win32
+		{7FC04E47-279A-4C5F-8681-5249B74B588D}.Debug Far1|Win32.Build.0 = Debug Far1|Win32
+		{7FC04E47-279A-4C5F-8681-5249B74B588D}.Debug Far1|x64.ActiveCfg = Debug Far1|x64
+		{7FC04E47-279A-4C5F-8681-5249B74B588D}.Debug Far1|x64.Build.0 = Debug Far1|x64
+		{7FC04E47-279A-4C5F-8681-5249B74B588D}.Debug Far2|Win32.ActiveCfg = Debug Far2|Win32
+		{7FC04E47-279A-4C5F-8681-5249B74B588D}.Debug Far2|Win32.Build.0 = Debug Far2|Win32
+		{7FC04E47-279A-4C5F-8681-5249B74B588D}.Debug Far2|x64.ActiveCfg = Debug Far2|x64
+		{7FC04E47-279A-4C5F-8681-5249B74B588D}.Debug Far2|x64.Build.0 = Debug Far2|x64
+		{7FC04E47-279A-4C5F-8681-5249B74B588D}.Debug Far3|Win32.ActiveCfg = Debug Far3|Win32
+		{7FC04E47-279A-4C5F-8681-5249B74B588D}.Debug Far3|Win32.Build.0 = Debug Far3|Win32
+		{7FC04E47-279A-4C5F-8681-5249B74B588D}.Debug Far3|x64.ActiveCfg = Debug Far3|x64
+		{7FC04E47-279A-4C5F-8681-5249B74B588D}.Debug Far3|x64.Build.0 = Debug Far3|x64
+		{7FC04E47-279A-4C5F-8681-5249B74B588D}.Release Far1|Win32.ActiveCfg = Release Far1|Win32
+		{7FC04E47-279A-4C5F-8681-5249B74B588D}.Release Far1|Win32.Build.0 = Release Far1|Win32
+		{7FC04E47-279A-4C5F-8681-5249B74B588D}.Release Far1|x64.ActiveCfg = Release Far1|x64
+		{7FC04E47-279A-4C5F-8681-5249B74B588D}.Release Far1|x64.Build.0 = Release Far1|x64
+		{7FC04E47-279A-4C5F-8681-5249B74B588D}.Release Far2|Win32.ActiveCfg = Release Far2|Win32
+		{7FC04E47-279A-4C5F-8681-5249B74B588D}.Release Far2|Win32.Build.0 = Release Far2|Win32
+		{7FC04E47-279A-4C5F-8681-5249B74B588D}.Release Far2|x64.ActiveCfg = Release Far2|x64
+		{7FC04E47-279A-4C5F-8681-5249B74B588D}.Release Far2|x64.Build.0 = Release Far2|x64
+		{7FC04E47-279A-4C5F-8681-5249B74B588D}.Release Far3|Win32.ActiveCfg = Release Far3|Win32
+		{7FC04E47-279A-4C5F-8681-5249B74B588D}.Release Far3|Win32.Build.0 = Release Far3|Win32
+		{7FC04E47-279A-4C5F-8681-5249B74B588D}.Release Far3|x64.ActiveCfg = Release Far3|x64
+		{7FC04E47-279A-4C5F-8681-5249B74B588D}.Release Far3|x64.Build.0 = Release Far3|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
