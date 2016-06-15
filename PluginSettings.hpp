@@ -45,7 +45,7 @@ public:
 #ifdef FAR3
 	SettingsControl(handle,SCTL_FREE,0,0);
 #else
-        for each(HKEY hk in subKeys)
+        for each(HKEY hk in subKeys) //for(HKEY hk : subKeys) after moving to a newer VC
             RegCloseKey(hk);
         subKeys.clear();
         if(hKey)
@@ -150,21 +150,21 @@ public:
       return keys;
    }
 
-    PTSTR Get(PCTSTR szName, PTSTR buf, DWORD cchSize, PCTSTR Default, KEY_TYPE root = 0) const
+    PTSTR Get(PCTSTR szName, PTSTR buf, DWORD cchSize, PCTSTR szDefault, KEY_TYPE root = 0) const
     {
-        if(!Default)
-            Default = _T("");
+        if(!szDefault)
+            szDefault = _T("");
 #ifdef FAR3
 	FarSettingsItem item = {sizeof item, root,szName,FST_STRING};
         _tcsncpy(buf,
-	    SettingsControl(handle,SCTL_GET,0,&item) ? item.String : Default,
+	    SettingsControl(handle,SCTL_GET,0,&item) ? item.String : szDefault,
             cchSize);
 #else
         if(root == 0) root = hKey;
         DWORD dwSize = cchSize*sizeof(TCHAR);
         LONG res = RegQueryValueEx(root, szName, 0, NULL, (BYTE*)buf, &dwSize);
         if(res != ERROR_SUCCESS)
-            _tcsncpy(buf, Default, cchSize);
+            _tcsncpy(buf, szDefault, cchSize);
 #endif
         return buf;
     }
@@ -180,11 +180,7 @@ public:
     {
 #ifdef FAR3
 	FarSettingsItem item={sizeof item, root,szName,FST_QWORD};
-	if (SettingsControl(handle,SCTL_GET,0,&item))
-	{
-	    return item.Number;
-	}
-	return Default;
+	return SettingsControl(handle, SCTL_GET, 0, &item) ? item.Number : Default;
 #else
         if(root == 0) root = hKey;
         unsigned __int64 val = 0;
@@ -222,6 +218,28 @@ public:
 	return 0;
     }
 
+    tstring Get(PCTSTR szName, PCTSTR szDefault, KEY_TYPE root = 0) const
+    {
+#ifdef FAR3
+	FarSettingsItem item = {sizeof item, root, szName, FST_STRING};
+	return SettingsControl(handle,SCTL_GET,0,&item) ? item.String : szDefault;
+#else
+        if(root == 0) root = hKey;
+        DWORD dwType, dwSize = 0;
+        if(RegQueryValueEx(root, szName, 0, &dwType, NULL, &dwSize)!=ERROR_SUCCESS)
+            return szDefault;
+
+        tstring str;
+	str.reserve(dwSize/sizeof(TCHAR));
+	str.resize(dwSize/sizeof(TCHAR));
+	if(RegQueryValueEx(root, szName, 0, &dwType, (BYTE*)str.c_str(), &dwSize)!=ERROR_SUCCESS)
+	    return szDefault;
+	// remove trailing \0
+	str.resize((dwSize-1)/sizeof(TCHAR));
+        return str;
+#endif
+    }
+
 #ifndef FAR3
     private:
     bool SetReg(PCTSTR szName, const void* val, DWORD bufsize, DWORD dwType, KEY_TYPE root)
@@ -237,7 +255,7 @@ public:
 #ifdef FAR3
 	FarSettingsItem item={sizeof item, root,szName,FST_STRING};
 	item.String=Value;
-	return SettingsControl(handle,SCTL_SET,0,&item)!=FALSE;
+	return SettingsControl(handle, SCTL_SET, 0, &item) != FALSE;
 #else
         return SetReg(szName, Value, (DWORD)(_tcslen(Value)+1) * sizeof(TCHAR), REG_SZ, root);
 #endif
@@ -256,7 +274,7 @@ public:
 #ifdef FAR3
 	FarSettingsItem item={sizeof item, root,szName,FST_QWORD};
 	item.Number=Value;
-	return SettingsControl(handle,SCTL_SET,0,&item)!=FALSE;
+	return SettingsControl(handle, SCTL_SET, 0, &item) != FALSE;
 #else
         return SetReg(szName, &Value, sizeof Value, REG_QWORD, root);
 #endif
@@ -284,7 +302,7 @@ public:
 	FarSettingsItem item={sizeof item, root,Name,FST_DATA};
 	item.Data.Size=Size;
 	item.Data.Data=Value;
-	return SettingsControl(handle,SCTL_SET,0,&item)!=FALSE;
+	return SettingsControl(handle, SCTL_SET, 0, &item) != FALSE;
 #else
         return SetReg(Name, Value, (DWORD)Size, REG_BINARY, root);
 #endif
