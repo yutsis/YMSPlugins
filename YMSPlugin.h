@@ -534,22 +534,6 @@ inline int mystrcmpi(PCTSTR str1, PCTSTR str2, PCWSTR) { return lstrcmpiW(str1, 
 #endif
 
 bool ReadBuffer(PCTSTR pFile, BYTE* buf, DWORD dwMaxSize=0, DWORD* pdwRead=NULL, BYTE** pNewBuf=NULL);
-/*TCHAR* GetReg(PCTSTR name, TCHAR* buf, DWORD count, PCTSTR dflt);
-tstring GetRegS(PCTSTR name, PCTSTR dflt);
-DWORD GetReg(PCTSTR name, DWORD deflt=0);
-void SetReg(PCTSTR name, BYTE* val, DWORD bufsize, DWORD Type);
-void SetReg(PCTSTR name, PCSTR  buf);
-void SetReg(PCTSTR name, PCWSTR buf);
-void SetReg(PCTSTR name, DWORD wrd);
-
-#ifndef FAR3
-inline void SetReg(PCTSTR name, PCSTR  buf) { SetReg(name, (BYTE*)buf, strlen(buf)+1, REG_SZ); }
-inline void SetReg(PCTSTR name, PCWSTR buf) { SetReg(name, (BYTE*)buf, (wcslen(buf)+1)*sizeof(wchar_t), REG_SZ); }
-inline void SetReg(PCTSTR name, DWORD wrd) { SetReg(name, (BYTE*)&wrd, sizeof wrd, REG_DWORD); }
-#define CloseSettings()
-#else
-void CloseSettings();
-#endif*/
 
 struct FarDialogItemID
 {
@@ -558,6 +542,7 @@ struct FarDialogItemID
   unsigned int Flags;
   int DefaultButton, ID;
 };
+
 FarDialogItem* MakeDialogItems(FarDialogItemID *items, int count);
 
 struct MenuItem : FarMenuItem
