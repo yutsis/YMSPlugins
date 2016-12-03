@@ -27,26 +27,25 @@ for %%a in ("Release FAR1|Win32" "Release FAR2|Win32" "Release FAR2|x64" "Releas
 %cygwin%sed -r -e "s/@platform/64-bit Unicode for FAR 3/" -e "s/@version/%vermaj%.%vermin%/" <readme.md > "%FAR364%\%subpath%\readme.md"
 @if errorlevel 1 goto exit
 
-
 for %%a in ("%FAR1%" "%FAR2%" "%FAR3%" "%FAR264%" "%FAR364%") do xcopy /y changelog %%a\%subpath%\
-@if errorlevel 1 goto exit
-for %%a in ("%FAR1%" "%FAR2%" "%FAR3%" "%FAR264%" "%FAR364%") do xcopy /y jsonEng.hlf %%a\%subpath%\
-@if errorlevel 1 goto exit
-for %%a in ("%FAR2%" "%FAR3%" "%FAR264%" "%FAR364%") do xcopy /y jsonRus.hlf %%a\%subpath%\
 @if errorlevel 1 goto exit
 for %%a in ("%FAR1%" "%FAR2%" "%FAR3%" "%FAR264%" "%FAR364%") do xcopy /y license.txt %%a\%subpath%\
 @if errorlevel 1 goto exit
-for %%a in ("%FAR1%" "%FAR2%" "%FAR3%" "%FAR264%" "%FAR364%") do xcopy /y jsonEng.lng %%a\%subpath%\
+for %%a in ("%FAR2%" "%FAR3%" "%FAR264%" "%FAR364%") do xcopy /y json*.hlf %%a\%subpath%\
 @if errorlevel 1 goto exit
-for %%a in ("%FAR2%" "%FAR3%" "%FAR264%" "%FAR364%") do xcopy /y jsonRus.lng %%a\%subpath%\
+for %%a in ("%FAR2%" "%FAR3%" "%FAR264%" "%FAR364%") do xcopy /y json*.lng %%a\%subpath%\
 @if errorlevel 1 goto exit
 for %%a in ("%FAR3%" "%FAR364%") do xcopy /y Renewal.xml %%a\%subpath%\
 @if errorlevel 1 goto exit
 
 for %%f in (jsonRus.hlf jsonRus.lng) do (
        %cygwin%iconv -f utf-8 -t cp866 -c < %%f > "%FAR1%\%subpath%\%%f"
-       :echo %cygwin%iconv -f utf-8 -t cp866 -c %%f
-       @if errorlevel 1 goto exit
+       @if errorlevel 2 goto exit
+)
+
+for %%f in (jsonEng.hlf jsonEng.lng) do (
+       %cygwin%iconv -f utf-8 -t cp437 -c < %%f > "%FAR1%\%subpath%\%%f"
+       @if errorlevel 2 goto exit
 )
 
 @pushd .

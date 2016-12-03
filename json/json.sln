@@ -1,11 +1,12 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
+Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2010
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "json", "json.vcxproj", "{9B97AEDF-FD33-4710-B822-341AE0A68543}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug Far1|Win32 = Debug Far1|Win32
+		Debug Far1|x64 = Debug Far1|x64
 		Debug Far2|Win32 = Debug Far2|Win32
 		Debug Far2|x64 = Debug Far2|x64
 		Debug Far3|Win32 = Debug Far3|Win32
@@ -13,6 +14,7 @@ Global
 		Debug|Win32 = Debug|Win32
 		Debug|x64 = Debug|x64
 		Release Far1|Win32 = Release Far1|Win32
+		Release Far1|x64 = Release Far1|x64
 		Release Far2|Win32 = Release Far2|Win32
 		Release Far2|x64 = Release Far2|x64
 		Release Far3|Win32 = Release Far3|Win32
@@ -23,6 +25,7 @@ Global
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{9B97AEDF-FD33-4710-B822-341AE0A68543}.Debug Far1|Win32.ActiveCfg = Debug Far1|Win32
 		{9B97AEDF-FD33-4710-B822-341AE0A68543}.Debug Far1|Win32.Build.0 = Debug Far1|Win32
+		{9B97AEDF-FD33-4710-B822-341AE0A68543}.Debug Far1|x64.ActiveCfg = Debug Far1|Win32
 		{9B97AEDF-FD33-4710-B822-341AE0A68543}.Debug Far2|Win32.ActiveCfg = Debug Far2|Win32
 		{9B97AEDF-FD33-4710-B822-341AE0A68543}.Debug Far2|Win32.Build.0 = Debug Far2|Win32
 		{9B97AEDF-FD33-4710-B822-341AE0A68543}.Debug Far2|x64.ActiveCfg = Debug Far2|x64
@@ -36,6 +39,7 @@ Global
 		{9B97AEDF-FD33-4710-B822-341AE0A68543}.Debug|x64.Build.0 = Debug Far3|x64
 		{9B97AEDF-FD33-4710-B822-341AE0A68543}.Release Far1|Win32.ActiveCfg = Release Far1|Win32
 		{9B97AEDF-FD33-4710-B822-341AE0A68543}.Release Far1|Win32.Build.0 = Release Far1|Win32
+		{9B97AEDF-FD33-4710-B822-341AE0A68543}.Release Far1|x64.ActiveCfg = Release Far1|Win32
 		{9B97AEDF-FD33-4710-B822-341AE0A68543}.Release Far2|Win32.ActiveCfg = Release Far2|Win32
 		{9B97AEDF-FD33-4710-B822-341AE0A68543}.Release Far2|Win32.Build.0 = Release Far2|Win32
 		{9B97AEDF-FD33-4710-B822-341AE0A68543}.Release Far2|x64.ActiveCfg = Release Far2|x64

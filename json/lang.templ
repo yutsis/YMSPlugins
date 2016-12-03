@@ -100,3 +100,86 @@ MViewGr
 MEditGr
 "EditGr"
 "РедГр"
+
+MParseFromClipboard
+"Parse JSON from Clipboard"
+"Прочесть JSON из буфера обмена"
+
+MParseOffset
+"File offset: %d"
+"Позиция в файле: %d"
+
+#no text, just to sync with ParseErrorCode enumeration
+MParseErrorNone
+""
+""
+
+MParseErrorDocumentEmpty
+"The JSON document is empty"
+"Документ JSON пустой"
+
+MParseErrorDocumentRootNotSingular
+"The document root must not follow by other values"
+"Корневой элемент документа должен быть единственным"
+
+MParseErrorValueInvalid
+"Invalid value"
+"Недопустимое значение при разборе JSON"
+
+MParseErrorObjectMissName
+"Missing a name for object member"
+"Отсутствует имя у элемента"
+
+MParseErrorObjectMissColon
+"Missing a colon after a name of object member"
+"Не хватает двоеточия после имени элемента"
+
+MParseErrorObjectMissCommaOrCurlyBracket
+"Missing a comma or '}' after an object member"
+"После элемента должна стоять запятая или '}'"
+
+MParseErrorArrayMissCommaOrSquareBracket
+"Missing a comma or ']' after an array element"
+"После элемента массива должна стоять запятая или ']'"
+
+MParseErrorStringUnicodeEscapeInvalidHex
+"Incorrect hex digit after \\u escape in string"
+"Неверная 16-ричная цифра после \\u в строке"
+
+MParseErrorStringUnicodeSurrogateInvalid
+"The surrogate pair in string is invalid"
+"Недопустимая суррогатная пара в строке"
+
+MParseErrorStringEscapeInvalid
+"Invalid escape character in string"
+"Недопустимый escape-символ в строке"
+
+MParseErrorStringMissQuotationMark
+"Missing a closing quotation mark in string"
+"Отсутствует закрывающая кавычка в строке"
+
+MParseErrorStringInvalidEncoding
+"Invalid encoding in string"
+"Недопустимая кодировка строки"
+
+MParseErrorNumberTooBig
+"Number too big to be stored in double"
+"Число не помещается в double"
+
+MParseErrorNumberMissFraction
+"Miss fraction part in number"
+"В числе не хватает дробной части"
+
+MParseErrorNumberMissExponent
+"Miss exponent in number"
+"В числе не хватает экспоненты"
+
+MParseErrorTermination
+"Parsing was terminated"
+"Разбор JSON был прерван"
+
+MParseErrorUnspecificSyntaxError
+"Unspecific syntax error"
+"Синтаксическая ошибка"
+
+#add more ParseErrors here if any new

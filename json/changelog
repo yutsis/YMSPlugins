@@ -8,6 +8,14 @@
 [!] Attention
 
 
+Version 1.20, 3 Dec 2016
+
+[+] Added parsing JSON from clipboard (from the Plugins menu or command line)
+[+] Error messages are displayed when running from the command line
+[-] Tried to process files with one number or string only (can't "open" them anyway)
+[-] Objects from Unicode files were not exported properly by F3/F4
+
+
 Version 1.10, 26 Mar 2016
 
 [-] Crash in FAR/x64 under Windows 10 when opening from the command line.

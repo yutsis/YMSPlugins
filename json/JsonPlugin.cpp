@@ -40,8 +40,9 @@ InfoPanelLine infoPanelLines[] = {
     { _T("     :) Michael Yutsis, 2015-") _T(COPR_YEAR), _T(""), 0 },
 };
 
-JsonPlugin::JsonPlugin(LPCTSTR lpFileName, LPCBYTE data) : buf(10000),
-            sHostFile(lpFileName), pExtOnGet(sJsonExt)
+TCHAR JsonPlugin::ClipboardName[] = _T("clipboard:");
+
+JsonPlugin::JsonPlugin(LPCTSTR lpFileName, LPCBYTE data) : sHostFile(lpFileName), buf(10000), pExtOnGet(sJsonExt)
 {
     bChanged = false;
     {
@@ -52,17 +53,46 @@ JsonPlugin::JsonPlugin(LPCTSTR lpFileName, LPCBYTE data) : buf(10000),
     iStartPanelMode = settings.Get(sStartPanelMode, 6) + '0';
     }
     //buf.resize(buf.capacity());
-    f = _tfopen(lpFileName, _T("r"));
-    if(f == NULL)
-        throw WinExcept();
-    FileReadStream fs(f, &buf[0], buf.size());
-    AutoUTFInputStream<unsigned, FileReadStream> autoStream(fs);
-    doc.ParseStream<0, AutoUTF<unsigned>>(autoStream);
-    bSourceHasBOM = autoStream.HasBOM();
-    sourceUTFType = autoStream.GetType();
+
+    if(IsClipboard())
+    {
+#ifdef FAR3
+        vector<wchar_t> clipboard(StartupInfo.FSF->PasteFromClipboard(FCT_ANY, NULL, 0));
+        StartupInfo.FSF->PasteFromClipboard(FCT_ANY, &clipboard[0], clipboard.size());
+#else
+#ifdef UNICODE //FAR2
+        wchar_t* clp = StartupInfo.FSF->PasteFromClipboard();
+        wchar_t* clipboard = clp;
+#else //FAR1
+        char* clp = StartupInfo.FSF->PasteFromClipboard();
+        vector<wchar_t> clipboard(MultiToWchar(clp, NULL, 0, CP_OEMCP) + 1);
+        OemToWchar(clp, &clipboard[0], clipboard.size());
+#endif
+#endif
+        GenericStringStream<UTF16<>> stream(&clipboard[0]);
+        doc.ParseStream<0, UTF16<>>(stream);
+        bSourceHasBOM = false;
+        sourceUTFType = kUTF16LE;
+#ifndef FAR3
+        StartupInfo.FSF->DeleteBuffer(clp);
+#endif
+        f = NULL;
+    }
+    else
+    {
+        f = _tfopen(lpFileName, _T("r"));
+        if(f == NULL)
+            throw WinExcept();
+        FileReadStream fs(f, &buf[0], buf.size());
+        AutoUTFInputStream<unsigned, FileReadStream> autoStream(fs);
+        doc.ParseStream<0, AutoUTF<unsigned>>(autoStream);
+        bSourceHasBOM = autoStream.HasBOM();
+        sourceUTFType = autoStream.GetType();
+    }
 
     curObject = &doc;    
 }
+
 JsonPlugin::~JsonPlugin()
 {
     if(f)
@@ -106,7 +136,8 @@ void JsonPlugin::GetOpenPluginInfo(OpenPluginInfo& info)
     sPanelTitle += sHostFile;
     if(bChanged) sPanelTitle += '*';
     if(*CurDir) {
-        sPanelTitle += ':';
+        if(!IsClipboard())
+            sPanelTitle += ':';
         sPanelTitle += CurDir;
     }
     info.PanelTitle = sPanelTitle.c_str();
@@ -146,6 +177,12 @@ public:
 void JsonPlugin::GetShortcutData(tstring& data)
 {
     data.assign(sHostFile);
+}
+
+bool JsonPlugin::IsValidDir() const
+{
+    return !doc.HasParseError() &&
+        (curObject->IsArray() || curObject->IsObject());
 }
 
 BOOL JsonPlugin::GetFindData(PluginPanelItem*& panelItems, int& itemCount, int OpMode)
@@ -263,7 +300,7 @@ void EncodeToBuf(PTSTR buf, PCTSTR dir, size_t size)
     TCHAR* p = buf;
     for(size_t i = 0; i < size; i++)
     {
-        char c = dir[i];
+        TCHAR c = dir[i];
         switch(c)
         {
             case '/':
@@ -370,25 +407,37 @@ void JsonPlugin::ExportItem(PluginPanelItem& item, PCTSTR filename, bool bAppend
             throw ActionException();
     }
 
-    FILE* f = _tfopen(filename, bAppend ? _T("a") : _T("w"));
+    TCHAR mode[3] = {0};
+    mode[0] = bAppend ? 'a' : 'w';
+    mode[1] = sourceUTFType == kUTF8 ? 't' : 'b'; // can't open Unicode stream in text mode because the output stream
+                                //   is assumed multibyte-characters so 0A is converted to 0A0D instead of 0A000D00
+
+    FILE* f = _tfopen(filename, mode);
+
     if(f == NULL)
         throw WinExcept();
     char buf[1000];
     FileWriteStream fstream(f, buf, sizeof buf);
     
-    typedef AutoUTFOutputStream<unsigned, FileWriteStream> OutputStream;
-    OutputStream os(fstream, sourceUTFType, /*bSourceHasBOM*/true);
-
     if(bAppend)
         fstream.Put('\n');
     
     auto value = (_tcscmp(item.FileName, _T("..")) ?
             (curObject->IsObject() ? &obj->value : &(*curObject)[_ttoi(item.FileName)]) :
              curObject);
+
+    typedef AutoUTFOutputStream<unsigned, FileWriteStream> OutputStream;
     if(sourceUTFType == kUTF8)
+    {
+        OutputStream os(fstream, kUTF8, /*bSourceHasBOM*/true);
         value->Accept(PrettyWriter<OutputStream, DocType, UTF8 <>>(os));
+    }
     else
+    {
+        OutputStream os(fstream, kUTF16LE, /*bSourceHasBOM*/true);
         value->Accept(PrettyWriter<OutputStream, DocType, UTF16<>>(os));
+    }
+
     fstream.Flush();
     fclose(f);
 }

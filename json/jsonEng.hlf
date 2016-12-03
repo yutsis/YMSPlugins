@@ -22,7 +22,7 @@ or ~http://plugring.farmanager.com/plugin.php?pid=956~@http://plugring.farmanage
 @Description
 $^#Description#
 
-This plugin displays contents of any JSON file as an archive or directory.
+This plugin displays contents of any JSON file or JSON content in clipboard as an archive or directory.
 The "subdirs" are JSON objects and arrays, and the 
 "files" are strings, numbers and booleans.
 
@@ -45,6 +45,13 @@ to make automatic "directory change" to specific location after opening the file
 #json:Local State:/plugins/metadata/adobe-reader/versions/4#
 @+ 
 
+If you have JSON content in your clipboard, you can open it in the plugin using the "Parse JSON from Clipboard"
+command in the Plugins menu, or use the command line:
+
+@-
+#json:clipboard:#
+@+ 
+
 @Keyboard
 $^#Keyboard Commands#
 
@@ -56,8 +63,8 @@ $^#Keyboard Commands#
 
 #Ctrl-G#    Put the value from Descriptions column into the command line.
 
-#Ctrl-Z#    Open current item in edit dialog box. Editing is not supported,
-          but you can view them, take to clipboard etc.
+#Ctrl-Z#    Open the current item in edit dialog box. Editing is not supported,
+          but you can view it, copy to clipboard etc.
 
 #Alt-Shift-F3# View the group of selected elements in a single viewer.
 
@@ -71,7 +78,7 @@ $^#Operation modes#
 
  There are two operation modes of the plugin:
 
-#Objects as directories.# Objects and arrays are color-highlighted if file highlighting is 
+#Objects as directories.# Objects and arrays are color-highlighted (if file highlighting is 
 enabled in FAR) and are displayed according to sorting rules, 
 before the other items (unless in Unsorted mode). In the QuickView mode you can see the total size
 of all "plain" items under the current object.

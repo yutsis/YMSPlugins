@@ -13,10 +13,6 @@
       <Configuration>Debug Far1</Configuration>
       <Platform>Win32</Platform>
     </ProjectConfiguration>
-    <ProjectConfiguration Include="Debug Far1|x64">
-      <Configuration>Debug Far1</Configuration>
-      <Platform>x64</Platform>
-    </ProjectConfiguration>
     <ProjectConfiguration Include="Debug Far3|Win32">
       <Configuration>Debug Far3</Configuration>
       <Platform>Win32</Platform>
@@ -36,10 +32,6 @@
     <ProjectConfiguration Include="Release Far1|Win32">
       <Configuration>Release Far1</Configuration>
       <Platform>Win32</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="Release Far1|x64">
-      <Configuration>Release Far1</Configuration>
-      <Platform>x64</Platform>
     </ProjectConfiguration>
     <ProjectConfiguration Include="Release Far3|Win32">
       <Configuration>Release Far3</Configuration>
@@ -97,14 +89,6 @@
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release Far1|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <CharacterSet>MultiByte</CharacterSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug Far1|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <CharacterSet>MultiByte</CharacterSet>
-  </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
     <Import Project="$(VCTargetsPath)\BuildCustomizations\masm.props" />
@@ -139,25 +123,14 @@
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug Far3|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release Far1|x64'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug Far1|x64'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
     <_ProjectFileVersion>10.0.40219.1</_ProjectFileVersion>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug Far1|Win32'">$(FAR1)\Plugins\json\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug Far1|Win32'">$(Platform) $(Configuration)\</IntDir>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug Far1|x64'">$(Platform)\$(Configuration)\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug Far1|x64'">$(Platform) $(Configuration)\</IntDir>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release Far1|Win32'">$(FAR1)\Plugins\json\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release Far1|Win32'">$(Platform) $(Configuration)\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release Far1|Win32'">false</LinkIncremental>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release Far1|x64'">$(Platform)\$(Configuration)\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release Far1|x64'">$(Platform) $(Configuration)\</IntDir>
-    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release Far1|x64'">false</LinkIncremental>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug Far2|Win32'">$(FAR2)\Plugins\json\</OutDir>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug Far3|Win32'">$(FAR3)\Plugins\json\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug Far2|Win32'">$(Platform) $(Configuration)\</IntDir>
@@ -195,9 +168,6 @@
     <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Debug Far1|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
     <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Debug Far1|Win32'" />
     <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug Far1|Win32'" />
-    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Debug Far1|x64'">AllRules.ruleset</CodeAnalysisRuleSet>
-    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Debug Far1|x64'" />
-    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug Far1|x64'" />
     <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release Far2|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
     <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release Far3|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
     <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release Far2|Win32'" />
@@ -213,9 +183,6 @@
     <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release Far1|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
     <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release Far1|Win32'" />
     <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release Far1|Win32'" />
-    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release Far1|x64'">AllRules.ruleset</CodeAnalysisRuleSet>
-    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release Far1|x64'" />
-    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release Far1|x64'" />
     <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug Far2|x64'">rapidjson\include\rapidjson;$(FAR2)\PluginSDK\Headers.c;$(IncludePath)</IncludePath>
     <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug Far3|x64'">rapidjson\include\rapidjson;$(FAR3)\PluginSDK\Headers.c;$(IncludePath)</IncludePath>
     <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release Far2|x64'">rapidjson\include\rapidjson;$(FAR2)\PluginSDK\Headers.c;$(IncludePath)</IncludePath>
@@ -226,11 +193,8 @@
     <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release Far3|Win32'">rapidjson\include\rapidjson;$(FAR3)\PluginSDK\Headers.c;$(IncludePath)</IncludePath>
     <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug Far1|Win32'">rapidjson\include\rapidjson;$(FAR1)\PluginSDK\Headers.c;$(IncludePath)</IncludePath>
     <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release Far1|Win32'">rapidjson\include\rapidjson;$(FAR1)\PluginSDK\Headers.c;$(IncludePath)</IncludePath>
-    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug Far1|x64'">rapidjson\include\rapidjson;$(FAR1)\PluginSDK\Headers.c;$(IncludePath)</IncludePath>
-    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release Far1|x64'">rapidjson\include\rapidjson;$(FAR1)\PluginSDK\Headers.c;$(IncludePath)</IncludePath>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug Far2|Win32'">true</LinkIncremental>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug Far3|Win32'">true</LinkIncremental>
-    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug Far1|x64'">true</LinkIncremental>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug Far1|Win32'">true</LinkIncremental>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug Far1|Win32'">
@@ -263,48 +227,6 @@
       <Command>xcopy /y /d "$(SolutionDir)*.lng" "$(OutDir)"
 </Command>
     </PostBuildEvent>
-    <PreBuildEvent>
-      <Command>
-      </Command>
-    </PreBuildEvent>
-    <CustomBuildStep />
-    <CustomBuildStep />
-    <CustomBuildStep />
-    <CustomBuildStep />
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug Far1|x64'">
-    <Midl>
-      <TargetEnvironment>X64</TargetEnvironment>
-    </Midl>
-    <ClCompile>
-      <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;json_EXPORTS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MinimalRebuild>true</MinimalRebuild>
-      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <StructMemberAlignment>2Bytes</StructMemberAlignment>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <WarningLevel>Level3</WarningLevel>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-    </ClCompile>
-    <Link>
-      <AdditionalDependencies>version.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>plugin.def</ModuleDefinitionFile>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>$(OutDir)json.pdb</ProgramDatabaseFile>
-      <SubSystem>Windows</SubSystem>
-      <OptimizeReferences>true</OptimizeReferences>
-      <RandomizedBaseAddress>false</RandomizedBaseAddress>
-      <DataExecutionPrevention>
-      </DataExecutionPrevention>
-      <TargetMachine>MachineX64</TargetMachine>
-    </Link>
-    <PostBuildEvent>
-      <Command>xcopy /y /d "$(SolutionDir)*.lng" "$(OutDir)"
-</Command>
-    </PostBuildEvent>
-    <CustomBuildStep />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release Far1|Win32'">
     <ClCompile>
@@ -329,39 +251,6 @@
       <DataExecutionPrevention>
       </DataExecutionPrevention>
       <TargetMachine>MachineX86</TargetMachine>
-    </Link>
-    <PostBuildEvent>
-      <Command>xcopy /y /d "$(SolutionDir)*.lng" "$(OutDir)"
-</Command>
-    </PostBuildEvent>
-    <CustomBuildStep />
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release Far1|x64'">
-    <Midl>
-      <TargetEnvironment>X64</TargetEnvironment>
-    </Midl>
-    <ClCompile>
-      <Optimization>MaxSpeed</Optimization>
-      <OmitFramePointers>true</OmitFramePointers>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;json_EXPORTS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <StringPooling>true</StringPooling>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <WarningLevel>Level3</WarningLevel>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-    </ClCompile>
-    <Link>
-      <AdditionalDependencies>version.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>plugin.def</ModuleDefinitionFile>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <SubSystem>Windows</SubSystem>
-      <OptimizeReferences>true</OptimizeReferences>
-      <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <RandomizedBaseAddress>false</RandomizedBaseAddress>
-      <DataExecutionPrevention>
-      </DataExecutionPrevention>
-      <TargetMachine>MachineX64</TargetMachine>
     </Link>
     <PostBuildEvent>
       <Command>xcopy /y /d "$(SolutionDir)*.lng" "$(OutDir)"
@@ -491,7 +380,6 @@
       <Command>xcopy /y /d "$(SolutionDir)*.lng" "$(OutDir)"
 </Command>
     </PostBuildEvent>
-    <CustomBuildStep />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release Far2|Win32'">
     <ClCompile>
@@ -619,7 +507,6 @@
       <Command>xcopy /y /d "$(SolutionDir)*.lng" "$(OutDir)"
 </Command>
     </PostBuildEvent>
-    <CustomBuildStep />
   </ItemDefinitionGroup>
   <ItemGroup>
     <CustomBuild Include="lang.templ">
@@ -645,18 +532,12 @@
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug Far2|x64'">if exist ..\..\..\FAR\fardev\unicode_far\tools\lng.generator.exe ..\..\..\FAR\fardev\unicode_far\tools\lng.generator.exe  -nc -ol %(FullPath)</Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug Far2|x64'">Compiling language file</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug Far2|x64'">jsonlang.h;jsonEng.lng;jsonRus.lng;%(Outputs)</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug Far1|x64'">if exist ..\..\..\FAR\fardev\unicode_far\tools\lng.generator.exe ..\..\..\FAR\fardev\unicode_far\tools\lng.generator.exe  -nc -ol %(FullPath)</Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug Far1|x64'">Compiling language file</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug Far1|x64'">jsonlang.h;jsonEng.lng;jsonRus.lng;%(Outputs)</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug Far3|x64'">if exist ..\..\..\FAR\fardev\unicode_far\tools\lng.generator.exe ..\..\..\FAR\fardev\unicode_far\tools\lng.generator.exe  -nc -ol %(FullPath)</Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug Far3|x64'">Compiling language file</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug Far3|x64'">jsonlang.h;jsonEng.lng;jsonRus.lng;%(Outputs)</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release Far2|x64'">if exist ..\..\..\FAR\fardev\unicode_far\tools\lng.generator.exe ..\..\..\FAR\fardev\unicode_far\tools\lng.generator.exe  -nc -ol %(FullPath)</Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release Far2|x64'">Compiling language file</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release Far2|x64'">jsonlang.h;jsonEng.lng;jsonRus.lng;%(Outputs)</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release Far1|x64'">if exist ..\..\..\FAR\fardev\unicode_far\tools\lng.generator.exe ..\..\..\FAR\fardev\unicode_far\tools\lng.generator.exe  -nc -ol %(FullPath)</Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release Far1|x64'">Compiling language file</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release Far1|x64'">jsonlang.h;jsonEng.lng;jsonRus.lng;%(Outputs)</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release Far3|x64'">if exist ..\..\..\FAR\fardev\unicode_far\tools\lng.generator.exe ..\..\..\FAR\fardev\unicode_far\tools\lng.generator.exe  -nc -ol %(FullPath)</Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release Far3|x64'">Compiling language file</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release Far3|x64'">jsonlang.h;jsonEng.lng;jsonRus.lng;%(Outputs)</Outputs>
@@ -677,10 +558,8 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release Far1|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release Far3|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug Far2|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug Far1|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug Far3|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release Far2|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release Far1|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release Far3|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="stdafx.cpp">
@@ -689,13 +568,11 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug Far2|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug Far3|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug Far1|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug Far1|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release Far2|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release Far3|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release Far2|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release Far3|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release Far1|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release Far1|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="json.cpp" />
     <ClCompile Include="jsonPlugin.cpp" />
@@ -705,13 +582,11 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Far2|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Far3|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Far1|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Far1|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Far2|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Far3|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Far2|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Far3|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Far1|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Far1|x64'">true</ExcludedFromBuild>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug Far3|x64'">
       </PrecompiledHeaderFile>
     </ClCompile>
@@ -720,8 +595,6 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Far3|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Far2|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Far3|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Far1|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Far1|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Far2|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Far1|Win32'">true</ExcludedFromBuild>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release Far3|Win32'">NotUsing</PrecompiledHeader>
@@ -752,10 +625,8 @@
       <FileType>Document</FileType>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Far3|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Far2|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Far1|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Far3|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Far2|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Far1|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Far2|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Far1|Win32'">true</ExcludedFromBuild>
     </MASM>

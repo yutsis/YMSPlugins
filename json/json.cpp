@@ -5,7 +5,6 @@
 #include "jsonlang.h"
 #include "guids.h"
 #include "version.h"
-#include "..\PluginSettings.hpp"
 
 static bool bInitCalled;
 
@@ -60,7 +59,13 @@ HANDLE WINAPI EXP_NAME(OpenFilePlugin)(LPCTSTR name, LPCBYTE data, int dataSize
         if(err != kParseErrorNone && ofs < (unsigned)dataSize-4)
             return INVALID_HANDLE_VALUE;
     }
-    return new JsonPlugin(name, data);
+    auto plugin = new JsonPlugin(name, data);
+    if(!plugin->IsValidDir())
+    {
+        delete plugin;
+        return INVALID_HANDLE_VALUE;
+    }
+    return plugin;
 }
 
 HANDLE WINAPI EXP_NAME(OpenPlugin)(int openFrom, INT_PTR item)
@@ -72,7 +77,7 @@ HANDLE WINAPI EXP_NAME(OpenPlugin)(int openFrom, INT_PTR item)
         case OPEN_COMMANDLINE:
             {
             if(!item)
-	        return INVALID_HANDLE_VALUE;
+                return INVALID_HANDLE_VALUE;
 #ifdef FAR3
             cmdLine.reset(_wcsdup(((OpenCommandLineInfo*)item)->CommandLine));
             filePath  = cmdLine.get();
@@ -88,24 +93,26 @@ HANDLE WINAPI EXP_NAME(OpenPlugin)(int openFrom, INT_PTR item)
                     *p1 = 0;
                 memmove(const_cast<PTSTR>(filePath), filePath + 1, (p1 - filePath + 1) * sizeof(TCHAR));
             }
-            }   
+            }
             break;
 
         case OPEN_PLUGINSMENU:
             {
-            panelItem.reset(GetCurrentItem());
-            filePath = panelItem->FileName;
+            //assert(item->)
+            filePath = JsonPlugin::ClipboardName;
+            /*panelItem.reset(GetCurrentItem());
+            panelItem->FileName;
             if(!filePath || !*filePath)
-	        return INVALID_HANDLE_VALUE;
+                return INVALID_HANDLE_VALUE;*/                
             }
             break;
 
 #ifdef FAR3
         case OPEN_SHORTCUT:
             if(!item)
-	        return INVALID_HANDLE_VALUE;
-	    filePath = ((OpenShortcutInfo*)item)->HostFile;
-            break;
+                return INVALID_HANDLE_VALUE;
+	        filePath = ((OpenShortcutInfo*)item)->HostFile;
+                break;
 #endif
         default:
 	    return INVALID_HANDLE_VALUE;
@@ -163,9 +170,22 @@ HANDLE WINAPI EXP_NAME(OpenPlugin)(int openFrom, INT_PTR item)
         WinError(ex);
         return INVALID_HANDLE_VALUE;
     }
+    if(plugin->HasParseError()) {
+        auto error = plugin->GetParseError();
+        auto eroffs = plugin->GetErrorOffset();
+        delete plugin;
+        tstring err(GetMsg(error + MParseErrorNone - kParseErrorNone));
+        err += '\n';
+        LPCTSTR err2 = GetMsg(MParseOffset);
+        vector<TCHAR> err3(_tcslen(err2) + 20);
+        _sntprintf(&err3[0], err3.size()-1, err2, eroffs); err3[err3.size()-1] = 0;
+        err += &err3[0];
+        WinError(err.c_str());
+        return INVALID_HANDLE_VALUE;
+    }
     if(!sSubDir.empty())
 	try {
-            plugin->SetDirectory(sSubDir.c_str(),0);
+        plugin->SetDirectory(sSubDir.c_str(),0);
 	}
 	catch(...) {}
     return plugin;
@@ -185,33 +205,29 @@ void WINAPI EXP_NAME(GetPluginInfo)(PluginInfo *Info)
   Info->CommandPrefix = _T("json");
 
 #ifdef FAR3
-  static PluginMenuItem pluginMenuItem, configMenuItem;
-//  static PCWSTR pluginMenuString;
-//  pluginMenuString = GetMsg(MXMLBrwsr);
+  static PluginMenuItem pluginMenuItem/*, configMenuItem*/;
+  static PCWSTR pluginMenuString;
+  pluginMenuString = GetMsg(MParseFromClipboard);
 
-/*  if(SETTINGS_GET(sAddPluginsMenu, 0)) {
-      pluginMenuItem.Guids = &MenuGuid;
-      pluginMenuItem.Strings = &pluginMenuString;
-      pluginMenuItem.Count = 1;
-      Info->PluginMenu = pluginMenuItem;
-  }*/
+  pluginMenuItem.Guids = &MenuGuid;
+  pluginMenuItem.Strings = &pluginMenuString;
+  pluginMenuItem.Count = 1;
+  Info->PluginMenu = pluginMenuItem;
 
-  configMenuItem.Guids = &MenuGuid;
+  //configMenuItem.Guids = &MenuGuid;
   //configMenuItem.Strings = &pluginMenuString;
   //configMenuItem.Count = 1;
 
-  Info->PluginConfig = configMenuItem;
+  //Info->PluginConfig = configMenuItem;
 #else  
   static PCTSTR menu;
 
-  /*menu = GetMsg(MXMLBrwsr);
-  Info->PluginConfigStrings = &menu;
+  menu = GetMsg(MParseFromClipboard);
+  /*Info->PluginConfigStrings = &menu;
   Info->PluginConfigStringsNumber = 1;*/
 
-  /*if(SETTINGS_GET(sAddPluginsMenu, 0)) {
-    Info->PluginMenuStrings = &menu;
-    Info->PluginMenuStringsNumber = 1;
-  }*/
+  Info->PluginMenuStrings = &menu;
+  Info->PluginMenuStringsNumber = 1;
 #endif
 }
 

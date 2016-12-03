@@ -27,9 +27,17 @@ class JsonPlugin : public YMSPlugin {
     virtual PCTSTR DescHistoryId() override { return _T("JsonDesc"); }
     BOOL GoToPath(PCTSTR path);
 
+    bool IsClipboard() const { return sHostFile.compare(ClipboardName) == 0; }
+
 public:
     JsonPlugin(LPCTSTR pFileName, LPCBYTE data=NULL);
+    JsonPlugin(LPWSTR clipboard);
     ~JsonPlugin();
+
+    bool HasParseError() const { return doc.HasParseError(); }
+    ParseErrorCode GetParseError() const { return doc.GetParseError(); }
+    size_t GetErrorOffset() const { return doc.GetErrorOffset(); }
+
     virtual void GetOpenPluginInfo(OpenPluginInfo& Info) override;
     virtual BOOL GetFindData(PluginPanelItem*& PanelItems, int& itemCount, int OpMode) override;
     virtual BOOL SetDirectory(PCTSTR Dir, int iOpMode=0) override;
@@ -51,4 +59,7 @@ public:
     virtual bool IsFolder(PluginPanelItem& item) override { return (Type)(int)item.USERDATA == kArrayType || (Type)(int)item.USERDATA == kObjectType; }
     virtual void OnMakeFileName(PluginPanelItem& item) override;
     virtual PCTSTR GetFileExt() override { return pExtOnGet; }
+    bool IsValidDir() const;
+
+    static TCHAR ClipboardName[];
 };

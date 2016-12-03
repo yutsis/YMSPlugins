@@ -15,6 +15,13 @@
 #include <vector>
 #include <map>
 
+#ifdef max
+#undef max
+#endif
+#ifdef min
+#undef min
+#endif
+
 #include <rapidjson.h>
 #include <memorystream.h>
 #include <stringbuffer.h>

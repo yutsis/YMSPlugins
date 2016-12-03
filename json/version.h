@@ -1,5 +1,5 @@
 #define VERSIONMAJOR 1
-#define VERSIONMINOR 10
+#define VERSIONMINOR 20
 #define COPR_YEAR "2016"
 
 #define STRINGIZE_(_s) #_s

@@ -15,7 +15,7 @@ located under `rapidjson/include/rapidjson` subdir.
    If it's not found, the language file `lang.templ` is not compiled but language files are still present and used in the build.
    
 ---
-Inside Visual Studio, you may build or debug this plugin under any FAR platform except for FAR1.75/x64 which is unsupported.
+Inside Visual Studio, you may build or debug this plugin under any FAR platform except for FAR1.75/x64 which is not supported.
 
 ---
 Michael Yutsis  
