@@ -21,6 +21,10 @@ an XP installation.
 **Installation**: create a subdir under your Plugins\ directory (e.g.
 Plugins\XMLDOM), extract all the files there, restart FAR and enjoy :)
 
+**Binaries** can be downloaded here:  
+[http://plugring.farmanager.com/plugin.php?pid=536](http://plugring.farmanager.com/plugin.php?pid=536)  
+[http://michael-y.org/FAR/#XML](http://michael-y.org/FAR/#XML)
+
 ---
 Michael Yutsis  
 Ramat Gan, Israel  

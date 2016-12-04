@@ -15,6 +15,10 @@ For more information, see the help file.
 **Installation**: create a subdir under your Plugins\ directory (e.g.
 Plugins\json), extract all the files there, restart FAR and enjoy :)
 
+**Binaries** can be downloaded here:  
+[http://plugring.farmanager.com/plugin.php?pid=956](http://plugring.farmanager.com/plugin.php?pid=956)  
+[http://michael-y.org/FAR/#json](http://michael-y.org/FAR/#json)
+
 ---
 Michael Yutsis  
 Ramat Gan, Israel  

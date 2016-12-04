@@ -97,6 +97,10 @@ comparison, unless they are surrounded by quotes.
 If not checked, they are considered parts of filenames (unless included in
 "additional separators") even if there's no quotes.
 
+**Binaries** can be downloaded here:  
+[http://plugring.farmanager.com/plugin.php?pid=18](http://plugring.farmanager.com/plugin.php?pid=18)  
+[http://michael-y.org/FAR/#clipsel](http://michael-y.org/FAR/#clipsel)
+
 --------------
 Michael Yutsis  
 Ramat Gan, Israel  
