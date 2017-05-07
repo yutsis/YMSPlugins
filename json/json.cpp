@@ -53,7 +53,7 @@ HANDLE WINAPI EXP_NAME(OpenFilePlugin)(LPCTSTR name, LPCBYTE data, int dataSize
         MemoryStream ms((LPCSTR)data, dataSize);
         AutoUTFInputStream<unsigned, MemoryStream> is(ms);
         GenericDocument<DocType> d;
-        d.ParseStream(is);
+        d.ParseStream<ParseFlags, DocType>(is);
         auto err = d.GetParseError();
         auto ofs= d.GetErrorOffset();
         if(err != kParseErrorNone && ofs < (unsigned)dataSize-4)

@@ -70,7 +70,7 @@ JsonPlugin::JsonPlugin(LPCTSTR lpFileName, LPCBYTE data) : sHostFile(lpFileName)
 #endif
 #endif
         GenericStringStream<UTF16<>> stream(&clipboard[0]);
-        doc.ParseStream<0, UTF16<>>(stream);
+        doc.ParseStream<ParseFlags, UTF16<>>(stream);
         bSourceHasBOM = false;
         sourceUTFType = kUTF16LE;
 #ifndef FAR3
@@ -85,7 +85,7 @@ JsonPlugin::JsonPlugin(LPCTSTR lpFileName, LPCBYTE data) : sHostFile(lpFileName)
             throw WinExcept();
         FileReadStream fs(f, &buf[0], buf.size());
         AutoUTFInputStream<unsigned, FileReadStream> autoStream(fs);
-        doc.ParseStream<0, AutoUTF<unsigned>>(autoStream);
+        doc.ParseStream<ParseFlags, AutoUTF<unsigned>>(autoStream);
         bSourceHasBOM = autoStream.HasBOM();
         sourceUTFType = autoStream.GetType();
     }
@@ -467,3 +467,15 @@ int JsonPlugin::MakeDirectory(WCONST WTYPE Name, int OpMode)
     ::SetLastError(ERROR_NOT_SUPPORTED);
     return FALSE;
 }
+/*
+bool JsonPlugin::ChangeDesc(PluginPanelItem& item, PCTSTR pNewDesc)
+{
+    GenericDocument<DocType> tmpdoc;
+    tmpdoc.Parse(pNewDesc);
+    if(tmpdoc.HasParseError())
+        return false;
+    
+    //auto type = (Type)(int)item.USERDATA;
+    return true;
+}
+*/

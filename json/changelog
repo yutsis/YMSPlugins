@@ -8,6 +8,11 @@
 [!] Attention
 
 
+Version 1.30, 7 May 2017
+
+[+] Allowed relaxed syntax (comments and trailing commas).
+
+
 Version 1.20, 3 Dec 2016
 
 [+] Added parsing JSON from clipboard (from the Plugins menu or command line)

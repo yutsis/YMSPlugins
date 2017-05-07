@@ -28,6 +28,8 @@ The "subdirs" are JSON objects and arrays, and the
 
 Item values are displayed in the Description column.
 
+JSON syntax is relaxed, comments and trailing commas are understood.
+
 You can view any item by F3 key. If you press F3 on "..", you view the whole
 current object or array with all its contents.
 

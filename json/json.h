@@ -6,6 +6,8 @@
     typedef UTF8<> DocType;
 #endif*/
 
+const int ParseFlags = kParseCommentsFlag | kParseTrailingCommasFlag;
+    
 class JsonPlugin : public YMSPlugin {
     tstring sHostFile;
     FILE* f;
@@ -26,6 +28,7 @@ class JsonPlugin : public YMSPlugin {
     virtual PCTSTR GetFilesHistoryId() override { return _T("JsonCopy"); }
     virtual PCTSTR DescHistoryId() override { return _T("JsonDesc"); }
     BOOL GoToPath(PCTSTR path);
+    //virtual bool ChangeDesc(PluginPanelItem& item, PCTSTR pNewDesc) override;
 
     bool IsClipboard() const { return sHostFile.compare(ClipboardName) == 0; }
 
